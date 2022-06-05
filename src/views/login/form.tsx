@@ -1,3 +1,4 @@
+import { useUser } from '@/store/user'
 import {
   FormInst,
   FormRules,
@@ -11,6 +12,7 @@ import {
   NSpace,
 } from 'naive-ui'
 import { defineComponent, reactive, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 interface LoginFormType {
   username: string
@@ -26,38 +28,39 @@ export const LoginForm = defineComponent({
         primaryColorPressed: '#3554D1',
       },
     }
+    const { userLogin } = useUser()
+    const router = useRouter()
     const formRef = ref<FormInst | null>(null)
 
     const loginForm = reactive<LoginFormType>({
       username: '',
       password: '',
-    } )
+    })
 
     const rules: FormRules = {
       username: [
         {
-          required:true,
+          required: true,
           message: '请输入用户名',
         },
       ],
       password: [
         {
-          required:true,
+          required: true,
           message: '请输入密码',
         },
       ],
     }
 
-    const handleForm = (e:MouseEvent) => {
-        e.preventDefault()
-        console.log(loginForm);
-        formRef.value?.validate(async (errors) => {
-          if (errors) {
-            return
-          }
-
-  
-        })
+    const handleForm = async (e: MouseEvent) => {
+      e.preventDefault()
+      formRef.value?.validate(async (errors) => {
+        if (errors) {
+          return
+        }
+        const login = await userLogin(loginForm.username, loginForm.password)
+        login && router.push('/dashboard')
+      })
     }
     return () => (
       <>
@@ -71,10 +74,19 @@ export const LoginForm = defineComponent({
               <NForm ref={formRef} model={loginForm} rules={rules}>
                 <NSpace vertical>
                   <NFormItem path="username" label="用户名">
-                    <NInput v-model:value={loginForm.username} placeholder={'请输入用户名'} />
+                    <NInput
+                      size="large"
+                      v-model:value={loginForm.username}
+                      placeholder={'请输入用户名'}
+                    />
                   </NFormItem>
                   <NFormItem path="password" label="密码">
-                    <NInput v-model:value={loginForm.password} type="password" placeholder={'请输入密码'} />
+                    <NInput
+                      size="large"
+                      v-model:value={loginForm.password}
+                      type="password"
+                      placeholder={'请输入密码'}
+                    />
                   </NFormItem>
                 </NSpace>
               </NForm>
@@ -82,7 +94,13 @@ export const LoginForm = defineComponent({
                 <NCheckbox>自动登录</NCheckbox>
               </div>
               <div class={'mt-8'}>
-                <NButton onClick={handleForm} type="primary" block={true} size={'large'} round>
+                <NButton
+                  onClick={handleForm}
+                  type="primary"
+                  block={true}
+                  size={'large'}
+                  round
+                >
                   登录
                 </NButton>
               </div>

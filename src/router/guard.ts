@@ -1,3 +1,4 @@
+import { useMessage } from 'naive-ui'
 import QProgress from 'qier-progress'
 import { router } from './router'
 
@@ -6,6 +7,7 @@ import { router } from './router'
 const qprogress = new QProgress()
 router.beforeEach(async (to) => {
   qprogress.start()
+
   // const { success } = (await checkLogined()) as UmiType
   // if (to.meta.isPublic) {
   //   if (success) {
