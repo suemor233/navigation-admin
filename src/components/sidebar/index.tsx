@@ -30,19 +30,12 @@ export const SideBar = defineComponent({
       if (route.fullPath.indexOf('?') !== -1) {
         return route.fullPath
           .substring(0, route.fullPath.indexOf('?'))
-          .split('/')[1]
+       
       } else {
-        return route.fullPath.split('/')[1]
+        return route.fullPath
       }
     })
 
-    const themeOverrides: GlobalThemeOverrides = {
-      common: {
-        primaryColorHover: '#3554D1',
-        primaryColor: '#3554D1',
-        primaryColorPressed: '#3554D1',
-      },
-    }
     return () => (
       <>
         <NLayoutSider
