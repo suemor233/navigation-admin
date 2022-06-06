@@ -1,7 +1,34 @@
-import { defineComponent } from 'vue'
+import { fetchHitokoto, SentenceType } from '@/api/modules/hitokoto'
+import { defineComponent, onBeforeMount, ref } from 'vue'
+import { pick } from 'lodash-es'
 import './index.css'
 export const LoginBg =  defineComponent({
   setup(props, ctx) {
+    const hitokoto = ref('')
+
+    const refreshHitokoto = () => {
+      fetchHitokoto([
+        SentenceType.动画,
+        SentenceType.原创,
+        SentenceType.哲学,
+        SentenceType.文学,
+      ]).then((data) => {
+        const postfix = Object.values(
+          pick(data, ['from', 'from_who', 'creator']),
+        ).filter(Boolean)[0]
+        if (!data.hitokoto) {
+          hitokoto.value = '没有获取到句子信息'
+        } else {
+          hitokoto.value = data.hitokoto + (postfix ? ' —— ' + postfix : '')
+        }
+      }).catch(()=>{
+        refreshHitokoto()
+      })
+    }
+
+    onBeforeMount(()=>{
+      refreshHitokoto()
+    })
     return () => (
       <>
         <div
@@ -17,7 +44,9 @@ export const LoginBg =  defineComponent({
               <span class="text-3xl"></span>
             </div>
             <div class="sm:text-sm xl:text-md text-gray-200 font-normal">
-            所谓自由就是可以说二加二等于四的自由
+              {
+                hitokoto.value ? hitokoto.value : '加载中...'
+              }
             </div>
           </div>
           <ul class="circles">

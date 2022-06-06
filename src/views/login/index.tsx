@@ -1,10 +1,10 @@
-import {LoginBg} from '@/views/login/bg';
-import {LoginForm} from '@/views/login/form';
+import {LoginBg} from '@/components/Login/bg';
+import {LoginForm} from '@/components/Login/form';
 import { useMessage } from 'naive-ui';
 import { defineComponent } from 'vue'
+
 export const LoginPage = defineComponent({
   setup(props, ctx) {
-  window.$message = useMessage()
 
   return () => (
       <>

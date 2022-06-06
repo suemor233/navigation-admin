@@ -1,3 +1,4 @@
+import { RouteName } from '@/router/name'
 import { useUser } from '@/store/user'
 import {
   FormInst,
@@ -10,6 +11,7 @@ import {
   NFormItem,
   NInput,
   NSpace,
+  useMessage,
 } from 'naive-ui'
 import { defineComponent, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -21,6 +23,17 @@ interface LoginFormType {
 
 export const LoginForm = defineComponent({
   setup(props, ctx) {
+
+    const { userLogin } = useUser()
+    const router = useRouter()
+    const toast = useMessage()
+    const formRef = ref<FormInst | null>(null)
+
+    const loginForm = reactive<LoginFormType>({
+      username: '',
+      password: '',
+    })
+
     const themeOverrides: GlobalThemeOverrides = {
       common: {
         primaryColorHover: '#3554D1',
@@ -28,14 +41,6 @@ export const LoginForm = defineComponent({
         primaryColorPressed: '#3554D1',
       },
     }
-    const { userLogin } = useUser()
-    const router = useRouter()
-    const formRef = ref<FormInst | null>(null)
-
-    const loginForm = reactive<LoginFormType>({
-      username: '',
-      password: '',
-    })
 
     const rules: FormRules = {
       username: [
@@ -52,6 +57,7 @@ export const LoginForm = defineComponent({
       ],
     }
 
+    
     const handleForm = async (e: MouseEvent) => {
       e.preventDefault()
       formRef.value?.validate(async (errors) => {
@@ -59,15 +65,21 @@ export const LoginForm = defineComponent({
           return
         }
         const login = await userLogin(loginForm.username, loginForm.password)
-        login && router.push('/dashboard')
+        if (login) {
+          toast.success('登录成功')
+          router.push({
+            name: RouteName.Dashboard
+          })          
+        }
+        
       })
     }
+  
     return () => (
       <>
         <div class={'md:w-1/2 xl:w-2/5 w-full flex items-center'}>
-          <NConfigProvider
+          <NConfigProvider themeOverrides={themeOverrides}
             class={'w-2/3 m-auto'}
-            themeOverrides={themeOverrides}
           >
             <p class={'text-3xl'}>登录</p>
             <div class={'w-full mt-8'}>
@@ -86,14 +98,15 @@ export const LoginForm = defineComponent({
                       v-model:value={loginForm.password}
                       type="password"
                       placeholder={'请输入密码'}
+                      onKeyup={(e: any) =>
+                        e.key === 'Enter' ? handleForm(e) : ''
+                      }
                     />
                   </NFormItem>
                 </NSpace>
               </NForm>
-              <div>
-                <NCheckbox>自动登录</NCheckbox>
-              </div>
-              <div class={'mt-8'}>
+    
+              <div class={'mt-4'}>
                 <NButton
                   onClick={handleForm}
                   type="primary"

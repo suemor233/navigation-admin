@@ -1,0 +1,34 @@
+.side{
+  //background: #E7F5EE;
+  background-color: #e0eae0;
+  background-image: linear-gradient(330deg, #e0eae0 0%, #deeee7 100%);
+ 
+  .avatar{
+    text-align: center;
+    padding-top: 1rem;
+
+
+    @-webkit-keyframes rotation{
+      from {-webkit-transform: rotate(0deg);}
+      to {-webkit-transform: rotate(360deg);}
+    }
+
+    p{
+      font-size: 1.8rem;
+      margin: 0px;
+      color: #6bb09c;
+      cursor: pointer;
+    }
+    .ImgAvatar{
+      margin: 0 auto;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all .5s;
+      &:hover{
+        transform: rotate(360deg);
+      }
+    }
+
+  }
+}
+

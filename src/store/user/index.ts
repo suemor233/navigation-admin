@@ -1,8 +1,8 @@
-import { setToken } from '@/utils/auth';
+import { removeToken, setToken } from '@/utils/auth';
 
 import { ref } from 'vue';
 import { acceptHMRUpdate, defineStore } from "pinia";
-import { check, login, } from '@/api/modules/user';
+import { check, login, userInfo, } from '@/api/modules/user';
 
 
 export const useUser = defineStore('useUser', () => {
@@ -16,17 +16,27 @@ export const useUser = defineStore('useUser', () => {
     return !!res
   }
 
-  const  updateToken = ($token: string)=> {
+  const updateUserInfo = async () => {
+    const res = await userInfo()
+    user.value = res
+  }
+
+  const updateToken = ($token: string)=> {
     if ($token) {
       setToken($token, 7)
     }
-
   }
 
+  const logout = () =>{
+    user.value = null
+    removeToken()
+  }
   return {
     user,
     userLogin,
-    updateToken
+    updateToken,
+    logout,
+    updateUserInfo
   }
 })
 if (import.meta.hot)

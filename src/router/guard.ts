@@ -1,3 +1,6 @@
+import { useUser } from '@/store/user';
+import { check } from '@/api/modules/user'
+import { removeToken } from '@/utils/auth'
 import { useMessage } from 'naive-ui'
 import QProgress from 'qier-progress'
 import { router } from './router'
@@ -7,21 +10,18 @@ import { router } from './router'
 const qprogress = new QProgress()
 router.beforeEach(async (to) => {
   qprogress.start()
-
-  // const { success } = (await checkLogined()) as UmiType
-  // if (to.meta.isPublic) {
-  //   if (success) {
-  //     return '/dashboard'
-  //   }
-  // } else {
-  //   const { success } = (await checkLogined()) as UmiType
-  //   if (!success) {
-  //     removeToken()
-  //     appStore.useUser.user.username = ''
-  //     appStore.useUser.user.password = ''
-  //     return '/Login'
-  //   }
-  // }
+  if (!to.meta.isPublic) {
+    const ok = await check()
+    console.log(ok,'=====');
+    if (!ok) {
+      const { logout } = useUser()
+      logout()
+      return '/Login'
+    }
+  }else{
+    const { logout } = useUser()
+    logout()
+  }
 })
 
 router.afterEach((to, _) => {

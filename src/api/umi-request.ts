@@ -1,12 +1,8 @@
 import {extend, RequestOptionsInit} from 'umi-request'
 import {getToken} from "@/utils/auth";
 import QProgress from "qier-progress";
-import { c } from 'naive-ui';
 
 const qprogress = new QProgress()
-
-
-
 /**
  * 配置request请求时的默认参数
  */
@@ -17,6 +13,7 @@ const client = extend({
         'Content-Type': 'multipart/form-data',
     },
 })
+
 
 // request拦截器, 改变url 或 options
 client.interceptors.request.use((url:string, options:any) => {
@@ -35,15 +32,16 @@ client.interceptors.request.use((url:string, options:any) => {
 
 
 client.interceptors.response.use(async (response:any) => {
-
     const res = await response.clone().json()
-    console.log(res);
     qprogress.finish()
 
-    if (!res.ok && res.ok === 0){
+    if ( res.ok === 0){
+        console.log(res);
         window.$message.error(res.message || res.message[0])
-        return
+        console.log('start');
+        return undefined
     }
+
     return response
 })
 
