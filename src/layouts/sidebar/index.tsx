@@ -7,9 +7,6 @@ import { useUser } from '@/store/user'
 export const SidebarLayout = defineComponent({
   setup(props, ctx) {
     const {updateUserInfo} = useUser()
-    onBeforeMount(() =>{
-      updateUserInfo()
-    })
     return () => (
       <>
         <NSpace vertical size="large">

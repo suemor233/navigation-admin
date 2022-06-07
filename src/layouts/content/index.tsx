@@ -1,3 +1,4 @@
+import { useUser } from '@/store/user'
 import { NButton, NLayoutContent, NLayoutFooter, NLayoutHeader } from 'naive-ui'
 import { computed, defineComponent, PropType } from 'vue'
 import { useRouter } from 'vue-router'
@@ -16,6 +17,8 @@ export const ContentLayout = defineComponent({
   },
   setup(props, ctx) {
     const { slots } = ctx
+    const {updateUserInfo} = useUser()
+    updateUserInfo()
     const router = useRouter()
     const route = computed(() => router.currentRoute)
     const pageTitle = computed(() =>
@@ -34,11 +37,11 @@ export const ContentLayout = defineComponent({
 
     return () => (
       <>
-        <div class={classes['bg'] + ' h-full pl-10'}>
+        <div class={classes['bg'] + ' h-full pl-10 flex flex-col'}>
           <header class={classes['header']}>
             <h1 class={classes['title']}>{pageTitle.value}</h1>
           </header>
-          <div>{slots.default?.()}</div>
+          <div class={'flex-1'}>{slots.default?.()}</div>
         </div>
       </>
     )

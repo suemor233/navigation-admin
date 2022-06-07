@@ -1,12 +1,12 @@
 import { removeToken, setToken } from '@/utils/auth';
 
-import { ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { acceptHMRUpdate, defineStore } from "pinia";
-import { check, login, userInfo, } from '@/api/modules/user';
-
+import { check, login, patchUser, userInfo, } from '@/api/modules/user';
+import { IUser } from './userType';
+import { SettingFormType } from '@/views/setting';
 
 export const useUser = defineStore('useUser', () => {
-
   const user = ref<IUser | null>(null);
 
   const userLogin = async (username: string, password: string) => {
@@ -18,7 +18,17 @@ export const useUser = defineStore('useUser', () => {
 
   const updateUserInfo = async () => {
     const res = await userInfo()
-    user.value = res
+    if (res) {
+      user.value = res
+    }
+  }
+
+  const patchUserInfo = async (data:SettingFormType) => {
+    const res = await patchUser(data)
+    if (res) {
+      await updateUserInfo()
+      return res
+    }
   }
 
   const updateToken = ($token: string)=> {
@@ -31,12 +41,15 @@ export const useUser = defineStore('useUser', () => {
     user.value = null
     removeToken()
   }
+
+
   return {
     user,
     userLogin,
     updateToken,
     logout,
-    updateUserInfo
+    updateUserInfo,
+    patchUserInfo
   }
 })
 if (import.meta.hot)

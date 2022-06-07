@@ -1,5 +1,5 @@
-import {extend, RequestOptionsInit} from 'umi-request'
-import {getToken} from "@/utils/auth";
+import { extend } from 'umi-request'
+import { getToken } from "@/utils/auth";
 import QProgress from "qier-progress";
 
 const qprogress = new QProgress()
@@ -16,14 +16,13 @@ const client = extend({
 
 
 // request拦截器, 改变url 或 options
-client.interceptors.request.use((url:string, options:any) => {
+client.interceptors.request.use((url: string, options: any) => {
     qprogress.start()
     const headers = getToken()
         ? {
             Authorization: `Bearer ${getToken()}`
         }
         : {}
-
     return {
         url,
         options: { ...options, headers }
@@ -31,14 +30,16 @@ client.interceptors.request.use((url:string, options:any) => {
 }, { global: false })
 
 
-client.interceptors.response.use(async (response:any) => {
+client.interceptors.response.use(async (response: any) => {
     const res = await response.clone().json()
     qprogress.finish()
 
-    if ( res.ok === 0){
-        console.log(res);
-        window.$message.error(res.message || res.message[0])
-        console.log('start');
+    if (res.ok === 0) {
+        if (Array.isArray(res.message)) {
+            window.$message.error(res.message[0])
+        } else {
+            window.$message.error(res.message)
+        }
         return undefined
     }
 
