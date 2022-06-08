@@ -12,7 +12,6 @@ router.beforeEach(async (to) => {
   qprogress.start()
   if (!to.meta.isPublic) {
     const ok = await check()
-    console.log(ok,'=====');
     if (!ok) {
       const { logout } = useUser()
       logout()

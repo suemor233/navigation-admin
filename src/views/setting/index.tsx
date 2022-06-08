@@ -16,14 +16,18 @@ import Avatar from 'naive-ui/es/avatar/src/Avatar'
 import { storeToRefs } from 'pinia'
 import { isEmpty } from 'lodash-es'
 import { computed, defineComponent, onBeforeMount, reactive, ref } from 'vue'
+import { SEditor } from '@/components/SEditor'
+import { socialKeyMap } from '@/common/social'
 
 export interface SettingFormType
-  extends Partial<Pick<IUser, 'username' | 'mail' | 'avatar' | 'introduce'>> {}
+  extends Partial<
+    Pick<IUser, 'username' | 'mail' | 'avatar' | 'introduce' | 'socialIds'>
+  > {}
 
 export default defineComponent({
   setup(props, ctx) {
     const { user } = storeToRefs(useUser())
-    const { updateUserInfo,patchUserInfo } = useUser()
+    const { updateUserInfo, patchUserInfo } = useUser()
     const formRef = ref<FormInst | null>(null)
     const toast = useMessage()
     const settingForm = reactive<SettingFormType>({
@@ -31,6 +35,7 @@ export default defineComponent({
       mail: '',
       avatar: '',
       introduce: '',
+      socialIds: undefined,
     })
     const diff = computed(() => deepDiff(user.value as IUser, settingForm))
 
@@ -76,11 +81,10 @@ export default defineComponent({
         res && toast.success('修改成功')
       })
     }
-
     return () => (
       <>
         <ContentLayout>
-          <div class={'flex justify-center items-center flex-row'}>
+          <div class={'flex justify-center flex-row '}>
             <div>
               <div
                 class={'bg-transparent border-gray-200 border-8 rounded-full'}
@@ -99,7 +103,7 @@ export default defineComponent({
                       'N/A'
                     )}
                   </p>
-                </div>
+            
 
                 <div class={'mt-8'}>
                   <p>上次登录地址</p>
@@ -114,6 +118,7 @@ export default defineComponent({
                   >
                     保存
                   </NButton>
+                  </div>
                 </div>
               </div>
             </div>
@@ -147,6 +152,23 @@ export default defineComponent({
                     placeholder={'请输入个人介绍'}
                   />
                 </NFormItem>
+
+                {(settingForm.socialIds as object) ? (
+                  <NFormItem label="社交平台 ID 录入">
+                    <SEditor
+                      options={Object.keys(socialKeyMap).map((key) => {
+                        return {
+                          label: key,
+                          value: socialKeyMap[key],
+                        }
+                      })}
+                      value={settingForm.socialIds as Record<string, string>}
+                      onChange={(newValue) => {
+                        settingForm.socialIds = newValue
+                      }}
+                    />
+                  </NFormItem>
+                ) : null}
               </NForm>
             </div>
           </div>

@@ -3,6 +3,7 @@ import {
   NConfigProvider,
   NMessageProvider,
   useMessage,
+  zhCN,
 } from 'naive-ui'
 import { defineComponent, onMounted } from 'vue'
 
@@ -16,10 +17,10 @@ export default defineComponent({
 
     return () => (
       <>
-        <NConfigProvider themeOverrides={themeOverrides}>
-          <NMessageProvider>
-            <messageWrapper/>
-          </NMessageProvider>
+        <NConfigProvider themeOverrides={themeOverrides} locale={zhCN}>
+            <NMessageProvider>
+              <messageWrapper />
+            </NMessageProvider>
         </NConfigProvider>
       </>
     )

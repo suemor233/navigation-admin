@@ -1,6 +1,6 @@
 import { NPopover } from 'naive-ui'
 import { parseDate, relativeTimeFromNow } from '@/utils/time'
-import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
+import { defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
 
 const _RelativeTime = defineComponent({
   props: {
@@ -12,6 +12,7 @@ const _RelativeTime = defineComponent({
   setup(props) {
     const time = ref(relativeTimeFromNow(props.time))
     let timer: ReturnType<typeof setInterval> | undefined | void
+
     onMounted(() => {
       if (!props.time) {
         return
