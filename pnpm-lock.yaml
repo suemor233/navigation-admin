@@ -6,6 +6,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.17.0
   '@typescript-eslint/parser': ^5.17.0
   '@vicons/antd': ^0.12.0
+  '@vicons/carbon': ^0.12.0
   '@vicons/ionicons5': ^0.12.0
   '@vicons/material': ^0.12.0
   '@vicons/utils': ^0.1.4
@@ -53,6 +54,7 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.17.0_ncp7kzlvh3hxymziyb722bt56u
   '@typescript-eslint/parser': 5.17.0_thk3xo4exzjr5rl6cnexo7v6re
   '@vicons/antd': 0.12.0
+  '@vicons/carbon': 0.12.0
   '@vicons/ionicons5': 0.12.0
   '@vicons/material': 0.12.0
   '@vicons/utils': 0.1.4_vue@3.2.31
@@ -663,6 +665,10 @@ packages:
 
   /@vicons/antd/0.12.0:
     resolution: {integrity: sha512-C0p6aO1EmGG1QHrqgUWQS1No20934OdWSRQshM5NIDK5H1On6tC26U0hT6Rmp40KfUsvhvX5YW8BoWJdNFifPg==}
+    dev: true
+
+  /@vicons/carbon/0.12.0:
+    resolution: {integrity: sha512-kCOgr/ZOhZzoiFLJ8pwxMa2TMxrkCUOA22qExPabus35F4+USqzcsxaPoYtqRd9ROOYiHrSqwapak/ywF0D9bg==}
     dev: true
 
   /@vicons/ionicons5/0.12.0:

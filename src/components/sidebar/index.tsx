@@ -28,13 +28,16 @@ export const SideBar = defineComponent({
 
     const fullPathValue: ComputedRef<string> = computed(() => {
       if (route.fullPath.indexOf('?') !== -1) {
-        return route.fullPath
-          .substring(0, route.fullPath.indexOf('?'))
-       
+        return route.fullPath.substring(0, route.fullPath.indexOf('?'))
       } else {
         return route.fullPath
       }
     })
+    const themeOverrides: GlobalThemeOverrides = {
+      common: {
+        hoverColor: '#d4e6df',
+      },
+    }
 
     return () => (
       <>
@@ -64,14 +67,16 @@ export const SideBar = defineComponent({
               </p>
             ) : undefined}
           </div>
-          <NMenu
-            options={menuOptions}
-            collapsed={collapsed.value}
-            collapsedWidth={64}
-            collapsedIconSize={22}
-            onUpdateValue={handleUpdateValue}
-            value={fullPathValue.value}
-          />
+          <NConfigProvider themeOverrides={themeOverrides}>
+            <NMenu
+              options={menuOptions}
+              collapsed={collapsed.value}
+              collapsedWidth={64}
+              collapsedIconSize={22}
+              onUpdateValue={handleUpdateValue}
+              value={fullPathValue.value}
+            />
+          </NConfigProvider>
         </NLayoutSider>
       </>
     )

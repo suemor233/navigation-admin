@@ -154,7 +154,7 @@ export default defineComponent({
                 </NFormItem>
 
                 {(settingForm.socialIds as object) ? (
-                  <NFormItem label="社交平台 ID 录入">
+                  <NFormItem label="社交平台地址录入">
                     <SEditor
                       options={Object.keys(socialKeyMap).map((key) => {
                         return {

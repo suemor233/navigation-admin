@@ -1,3 +1,6 @@
+import { StackView } from './../views/pages/Stack/index';
+import { ProjectView } from './../views/pages/Project/index';
+import { AboutView } from './../views/pages/About/index';
 import { RouteName } from './name';
 import { LoginPage } from "@/views/login";
 import { RouteRecordRaw } from "vue-router";
@@ -6,6 +9,7 @@ import { DashBoardView } from '@/views/dashboard';
 import { DashboardOutlined } from '@vicons/antd'
 import { renderIcon } from '@/components/Icon';
 import { SettingsOutline } from '@vicons/ionicons5';
+import { $RouterView } from '@/layouts/router-view';
 
 export const routeForMenu: Array<RouteRecordRaw> = [
   {
@@ -18,6 +22,46 @@ export const routeForMenu: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/pages',
+    name: RouteName.Pages,
+    meta: {
+      title: '页面',
+      icon: renderIcon(DashboardOutlined),
+    },
+    redirect: '/pages/about',
+    component: $RouterView,
+    children :[
+      {
+        path: 'about',
+        component: AboutView,
+        name: RouteName.About,
+        meta: {
+          title: '关于',
+          icon: renderIcon(DashboardOutlined),
+        },
+      },
+      {
+        path: 'project',
+        component: ProjectView,
+        name: RouteName.Project,
+        meta: {
+          title: '项目',
+          icon: renderIcon(DashboardOutlined),
+        },
+      },
+      {
+        path: 'stack',
+        component: StackView,
+        name: RouteName.Stack,
+        meta: {
+          title: '栈',
+          icon: renderIcon(DashboardOutlined),
+        },
+      },
+    
+    ]
+  },
+  {
     path: '/setting',
     redirect: '/setting/user',
     meta: {
@@ -27,6 +71,7 @@ export const routeForMenu: Array<RouteRecordRaw> = [
     },
     component: () => null,
   },
+
   {
     path: '/setting/:type',
     name: RouteName.Setting,

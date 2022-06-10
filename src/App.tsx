@@ -9,15 +9,10 @@ import { defineComponent, onMounted } from 'vue'
 
 export default defineComponent({
   setup(props, ctx) {
-    const themeOverrides: GlobalThemeOverrides = {
-      common: {
-        hoverColor: '#d4e6df',
-      },
-    }
-
+  
     return () => (
       <>
-        <NConfigProvider themeOverrides={themeOverrides} locale={zhCN}>
+        <NConfigProvider  locale={zhCN}>
             <NMessageProvider>
               <messageWrapper />
             </NMessageProvider>
