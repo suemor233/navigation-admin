@@ -9,37 +9,24 @@ export const SEditor = defineComponent({
       required: true,
     },
     value: {
-      type: Object as PropType<Record<string, string>>,
+      type: Object as PropType<Record<string, string>[]>,
       required: true,
     },
     onChange: {
-      type: Function as PropType<(value?: Record<string, string>) => void>,
-      required: true,
+      type: Function as PropType<(value?: Record<string, string>[]) => void>,
+      required: true
     },
   },
   setup(props, ctx) {
     const { onChange, value } = props
-    const KVArray = ref<{ key: string; value: string }[]>([])
+    const KVArray = ref<{ key: string; value: string }[]>(value as { key: string; value: string }[])
 
-    onMounted(() => {
-
-     Object.entries(props.value).forEach(([key, value]) => {
-        KVArray.value.push({ key, value })
-     })
-
-
-    })
 
     watch(
       () => KVArray.value,
       (newValue) => {
-        const obj = {}
-        KVArray.value.map((item) => {
-          if (item.key && item.value) {
-            obj[item.key] = item.value
-          }
-        })
-        onChange(obj)
+        //@ts-ignore
+        onChange(newValue)
       },
       { deep: true },
     )

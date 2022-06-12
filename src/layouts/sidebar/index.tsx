@@ -6,7 +6,6 @@ import { useUser } from '@/store/user'
 
 export const SidebarLayout = defineComponent({
   setup(props, ctx) {
-
     return () => (
       <>
         <NSpace vertical size="large">

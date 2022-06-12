@@ -77,10 +77,13 @@ export default defineComponent({
         if (errors) {
           return
         }
+        console.log(settingForm.socialIds);
         const res = await patchUserInfo(settingForm)
         res && toast.success('修改成功')
       })
     }
+
+    console.log(settingForm);
     return () => (
       <>
         <ContentLayout>
@@ -153,7 +156,7 @@ export default defineComponent({
                   />
                 </NFormItem>
 
-                {(settingForm.socialIds as object) ? (
+                {(settingForm.socialIds ) ? (
                   <NFormItem label="社交平台地址录入">
                     <SEditor
                       options={Object.keys(socialKeyMap).map((key) => {
@@ -162,7 +165,7 @@ export default defineComponent({
                           value: socialKeyMap[key],
                         }
                       })}
-                      value={settingForm.socialIds as Record<string, string>}
+                      value={settingForm.socialIds as Record<string, string>[]}
                       onChange={(newValue) => {
                         settingForm.socialIds = newValue
                       }}

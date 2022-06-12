@@ -1,3 +1,4 @@
+import { SEditor } from '@/components/SEditor';
 import { ContentLayout } from '@/layouts/content';
 import { defineComponent } from 'vue'
 export const AboutView =  defineComponent({
@@ -8,6 +9,18 @@ export const AboutView =  defineComponent({
            <div class={'flex flex-row w-full justify-around'}>
              <div>
                <p>基本信息</p>
+               <SEditor
+                // options={Object.keys(socialKeyMap).map((key) => {
+                //   return {
+                //     label: key,
+                //     value: socialKeyMap[key],
+                //   }
+                // })}
+                // value={settingForm.socialIds as Record<string, string>}
+                // onChange={(newValue) => {
+                //   settingForm.socialIds = newValue
+                // }}
+               />
              </div>
 
              <div>
