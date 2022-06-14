@@ -1,6 +1,7 @@
 import {
   GlobalThemeOverrides,
   NConfigProvider,
+  NDialogProvider,
   NMessageProvider,
   useMessage,
   zhCN,
@@ -9,13 +10,14 @@ import { defineComponent, onMounted } from 'vue'
 
 export default defineComponent({
   setup(props, ctx) {
-  
     return () => (
       <>
-        <NConfigProvider  locale={zhCN}>
-            <NMessageProvider>
+        <NConfigProvider locale={zhCN}>
+          <NMessageProvider>
+            <NDialogProvider>
               <messageWrapper />
-            </NMessageProvider>
+            </NDialogProvider>
+          </NMessageProvider>
         </NConfigProvider>
       </>
     )

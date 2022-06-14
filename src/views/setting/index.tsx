@@ -21,7 +21,7 @@ import { socialKeyMap } from '@/common/social'
 
 export interface SettingFormType
   extends Partial<
-    Pick<IUser, 'username' | 'mail' | 'avatar' | 'introduce' | 'socialIds'>
+    Pick<IUser, 'username' | 'mail' | 'avatar' | 'introduce' | 'socialIds' | 'backgroundImage'>
   > {}
 
 export default defineComponent({
@@ -35,6 +35,7 @@ export default defineComponent({
       mail: '',
       avatar: '',
       introduce: '',
+      backgroundImage:'',
       socialIds: undefined,
     })
     const diff = computed(() => deepDiff(user.value as IUser, settingForm))
@@ -63,6 +64,12 @@ export default defineComponent({
           message: '请输入主人头像地址',
         },
       ],
+      backgroundImage: [
+        {
+          required: true,
+          message: '请输入主人北京图片地址',
+        },
+      ],
       introduce: [
         {
           required: true,
@@ -77,13 +84,11 @@ export default defineComponent({
         if (errors) {
           return
         }
-        console.log(settingForm.socialIds);
         const res = await patchUserInfo(settingForm)
         res && toast.success('修改成功')
       })
     }
 
-    console.log(settingForm);
     return () => (
       <>
         <ContentLayout>
@@ -144,6 +149,13 @@ export default defineComponent({
                   <NInput
                     v-model:value={settingForm.avatar}
                     placeholder={'请输入主人头像地址'}
+                  />
+                </NFormItem>
+
+                <NFormItem path="backgroundImage" label="背景图片">
+                  <NInput
+                    v-model:value={settingForm.backgroundImage}
+                    placeholder={'请输入主人背景图片地址'}
                   />
                 </NFormItem>
 

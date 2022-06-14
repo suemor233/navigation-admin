@@ -31,8 +31,8 @@ client.interceptors.request.use((url: string, options: any) => {
 
 
 client.interceptors.response.use(async (response: any) => {
+ 
     const res = await response.clone().json()
-
     qprogress.finish()
 
     if (res.ok === 0) {

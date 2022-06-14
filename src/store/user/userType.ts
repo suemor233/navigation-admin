@@ -7,6 +7,7 @@ export interface IUser {
   socialIds:Record<string,string>[],
   url:string,
   mail:string,
+  backgroundImage:string
   avatar:string,
   expiresIn:string,
   id:string,

@@ -2,6 +2,7 @@ import { useUser } from '@/store/user'
 import { NButton, NLayoutContent, NLayoutFooter, NLayoutHeader } from 'naive-ui'
 import { computed, defineComponent, PropType } from 'vue'
 import { useRouter } from 'vue-router'
+import { Header } from '../Header'
 import classes from './index.module.scss'
 
 export const ContentLayout = defineComponent({
@@ -40,6 +41,9 @@ export const ContentLayout = defineComponent({
         <div class={classes['bg'] + ' h-full pl-10 flex flex-col'}>
           <header class={classes['header']}>
             <h1 class={classes['title']}>{pageTitle.value}</h1>
+            <div class={'pr-24'}>
+            <Header >{slots.header?.()}</Header>
+            </div>
           </header>
           <div class={'flex-1'}>{slots.default?.()}</div>
         </div>
