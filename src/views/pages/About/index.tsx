@@ -1,5 +1,6 @@
 import { aboutInfo, updateAbout } from '@/api/modules/about'
 import { HeaderActionButton } from '@/components/button/rounded-button'
+import { SendIcon } from '@/components/icons'
 import { ContentLayout } from '@/layouts/content'
 import { CheckmarkSharp } from '@vicons/ionicons5'
 import { useMessage } from 'naive-ui'
@@ -21,7 +22,7 @@ export const AboutView = defineComponent({
       header: () => (
         <HeaderActionButton
           variant="primary"
-          icon={<CheckmarkSharp />}
+          icon={<SendIcon />}
           onClick={async () => {
             const _concatValue: AboutType[] = []
             _concatValue.push(...updateAboutbasic, ...updateAboutDetail)
@@ -31,6 +32,7 @@ export const AboutView = defineComponent({
             }
           }}
         ></HeaderActionButton>
+        
       ),
     }
 

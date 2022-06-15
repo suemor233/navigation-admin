@@ -3,6 +3,7 @@ import { RouteName } from '@/router/name'
 import { DashboardOutlined } from '@vicons/antd'
 import {
   BookOutline as BookIcon,
+  BuildOutline,
   FlaskOutline,
   SettingsOutline,
 } from '@vicons/ionicons5'
@@ -50,7 +51,7 @@ function useSideBar() {
     {
       label: '技术栈',
       key: '/' + RouteName.Stack,
-      icon: renderIcon(DashboardOutlined),
+      icon: renderIcon(BuildOutline),
     },
     {
       label: '设定',

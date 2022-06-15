@@ -40,7 +40,7 @@ export const ContentLayout = defineComponent({
       <>
         <div class={classes['bg'] + ' h-full px-10 flex flex-col'}>
           <header class={classes['header']}>
-            <h1 class={classes['title']}>{pageTitle.value}</h1>
+            <h1 class={classes['title']}>{slots.title?.() || pageTitle.value}</h1>
             <div class={'pr-10'}>
             <Header >{slots.header?.()}</Header>
             </div>

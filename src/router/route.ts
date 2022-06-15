@@ -8,7 +8,7 @@ import { SidebarLayout } from '@/layouts/sidebar';
 import { DashBoardView } from '@/views/dashboard';
 import { DashboardOutlined } from '@vicons/antd'
 import { renderIcon } from '@/components/Icon';
-import { FlaskOutline, SettingsOutline } from '@vicons/ionicons5';
+import { BuildOutline, FlaskOutline, SettingsOutline } from '@vicons/ionicons5';
 import { $RouterView } from '@/layouts/router-view';
 import { EyeIcon, FlaskIcon, PencilAltIcon } from '@/components/icons';
 import Eye from '@vicons/tabler/es/Eye'
@@ -68,7 +68,7 @@ export const routeForMenu: Array<RouteRecordRaw> = [
     name: RouteName.Stack,
     meta: {
       title: '栈',
-      icon: renderIcon(DashboardOutlined),
+      icon: renderIcon(BuildOutline),
     },
   },
   {

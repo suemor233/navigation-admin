@@ -4,7 +4,7 @@ import { AddIcon } from '@/components/icons'
 import { DeleteConfirmButton } from '@/components/special-button/delete-confirm'
 import { RelativeTime } from '@/components/time/relative-time'
 import { ContentLayout } from '@/layouts/content'
-import { DataTableColumns, NDataTable, NSpace } from 'naive-ui'
+import { DataTableColumns, NButton, NDataTable, NSpace } from 'naive-ui'
 import { defineComponent, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ProjectDataType } from './edit'
@@ -21,6 +21,8 @@ interface ProjectReturnDataType {
 
 export default defineComponent({
   setup(props, ctx) {
+    const route = useRoute()
+    const router = useRouter()
     const slots = {
       header: () => (
         <>
@@ -35,9 +37,9 @@ export default defineComponent({
             <HeaderActionButton to={'/projects/edit'} icon={<AddIcon />} />
           </NSpace>
         </>
-      ),
+      )
     }
-
+  
     const handlePageChange = async (
       pageNum = route.query.page || 1,
       pageSize: number = 10,
@@ -53,13 +55,12 @@ export default defineComponent({
 
     const projectData = ref<ProjectReturnDataType | undefined>(undefined)
     const checkedRowKeysRef = ref<string[]>([])
-    const route = useRoute()
-    const router = useRouter()
 
     watch(
       route,
-      async (newVal, oldVal) => {
+      async () => {
         await handlePageChange()
+
       },
       { immediate: true },
     )
@@ -102,9 +103,29 @@ export default defineComponent({
             return <RelativeTime time={row.created as string}></RelativeTime>
           },
         },
+        {
+          title: '编辑',
+          key: 'update',
+          render(row) {
+            return (
+              <button
+                class={'text-green-600'}
+                onClick={() => {
+                  router.push({
+                    name:'edit',
+                    query:{
+                      id:row.id
+                    }
+                  })
+                }}
+              >
+                编辑
+              </button>
+            )
+          },
+        },
       ]
     }
-
     const handleCheck = (rowKeys: any) => {
       checkedRowKeysRef.value = rowKeys
     }
