@@ -27,11 +27,11 @@ export const SideBar = defineComponent({
     })
 
     const fullPathValue: ComputedRef<string> = computed(() => {
-      if (route.fullPath.indexOf('?') !== -1) {
-        return route.fullPath.substring(0, route.fullPath.indexOf('?'))
-      } else {
+      // if (route.fullPath.indexOf('?') !== -1) {
+      //   return route.fullPath.substring(0, route.fullPath.indexOf('?'))
+      // } else {
         return route.fullPath
-      }
+      // }
     })
     const themeOverrides: GlobalThemeOverrides = {
       common: {

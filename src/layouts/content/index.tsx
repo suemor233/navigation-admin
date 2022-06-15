@@ -38,10 +38,10 @@ export const ContentLayout = defineComponent({
 
     return () => (
       <>
-        <div class={classes['bg'] + ' h-full pl-10 flex flex-col'}>
+        <div class={classes['bg'] + ' h-full px-10 flex flex-col'}>
           <header class={classes['header']}>
             <h1 class={classes['title']}>{pageTitle.value}</h1>
-            <div class={'pr-24'}>
+            <div class={'pr-10'}>
             <Header >{slots.header?.()}</Header>
             </div>
           </header>

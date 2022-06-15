@@ -43,6 +43,7 @@ export const AboutView = defineComponent({
       const res = await aboutInfo()
       aboutValue.value = res.data
 
+
       updateAboutbasic = aboutValue.value?.filter(
         (item) => item.detailFlag === false,
       ) as AboutType[]

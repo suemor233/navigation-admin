@@ -8,9 +8,11 @@ import { SidebarLayout } from '@/layouts/sidebar';
 import { DashBoardView } from '@/views/dashboard';
 import { DashboardOutlined } from '@vicons/antd'
 import { renderIcon } from '@/components/Icon';
-import { SettingsOutline } from '@vicons/ionicons5';
+import { FlaskOutline, SettingsOutline } from '@vicons/ionicons5';
 import { $RouterView } from '@/layouts/router-view';
-
+import { EyeIcon, FlaskIcon, PencilAltIcon } from '@/components/icons';
+import Eye from '@vicons/tabler/es/Eye'
+import Pencil from '@vicons/tabler/es/Pencil'
 export const routeForMenu: Array<RouteRecordRaw> = [
   {
     path: '/dashboard',
@@ -22,44 +24,52 @@ export const routeForMenu: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: '/pages',
-    name: RouteName.Pages,
+    path: 'about',
+    component: AboutView,
+    name: RouteName.About,
     meta: {
-      title: '页面',
+      title: '关于',
       icon: renderIcon(DashboardOutlined),
     },
-    redirect: '/pages/about',
+  },
+  {
+    path: 'projects',
     component: $RouterView,
-    children :[
+    name: RouteName.Projects,
+    meta: {
+      title: '项目',
+      icon: renderIcon(FlaskOutline),
+    },
+    children: [
       {
-        path: 'about',
-        component: AboutView,
-        name: RouteName.About,
+        path: 'list',
+        name: RouteName.ListProject,
         meta: {
-          title: '关于',
-          icon: renderIcon(DashboardOutlined),
+          title: '项目列表',
+          query: { page: 1 },
+          icon: renderIcon(Eye),
         },
+        component: () => import('../views/pages/Project/list'),
       },
       {
-        path: 'project',
-        component: ProjectView,
-        name: RouteName.Project,
+        path: 'edit',
+        name: RouteName.EditProject,
         meta: {
-          title: '项目',
-          icon: renderIcon(DashboardOutlined),
+          title: '创建项目',
+          icon: renderIcon(Pencil),
         },
+        component: () => import('../views/pages/Project/edit'),
       },
-      {
-        path: 'stack',
-        component: StackView,
-        name: RouteName.Stack,
-        meta: {
-          title: '栈',
-          icon: renderIcon(DashboardOutlined),
-        },
-      },
-    
-    ]
+    ],
+  },
+  {
+    path: 'stack',
+    component: StackView,
+    name: RouteName.Stack,
+    meta: {
+      title: '栈',
+      icon: renderIcon(DashboardOutlined),
+    },
   },
   {
     path: '/setting',
