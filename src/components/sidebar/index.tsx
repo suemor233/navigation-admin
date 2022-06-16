@@ -26,18 +26,16 @@ export const SideBar = defineComponent({
       collapsed.value = !isLargeScreen.value
     })
 
-    const fullPathValue: ComputedRef<string> = computed(() => {
-      // if (route.fullPath.indexOf('?') !== -1) {
-      //   return route.fullPath.substring(0, route.fullPath.indexOf('?'))
-      // } else {
+    const fullPathValue: ComputedRef<string> = computed(() => {  
         return route.fullPath
-      // }
     })
     const themeOverrides: GlobalThemeOverrides = {
       common: {
         hoverColor: '#d4e6df',
       },
     }
+
+    
 
     return () => (
       <>
@@ -55,7 +53,7 @@ export const SideBar = defineComponent({
           <div class={classes.avatar}>
             <div onClick={() => router.push('/dashboard')}>
               <NAvatar
-                size={100}
+                size={collapsed.value ? 50 :100}
                 src={user.value?.avatar}
                 class={classes.ImgAvatar}
               />

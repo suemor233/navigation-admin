@@ -17,13 +17,6 @@ pnpm i
 pnpm dev
 ```
 
-# 截图
-
-<p align="middle">
-<img src="https://y.suemor.com/imagesn-admin-02.jpg" width="1000" alt="项目" />
-<img src="https://y.suemor.com/imagesn-admin-01.jpg" width="1000" alt="设置" />
-</p>
-
 # Reference
 项目参考了 [mx-admin](https://github.com/mx-space/mx-admin)
 
