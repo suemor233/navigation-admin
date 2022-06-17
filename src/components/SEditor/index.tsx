@@ -20,13 +20,17 @@ export const SEditor = defineComponent({
   setup(props, ctx) {
     const { onChange, value } = props
     const KVArray = ref<{ key: string; value: string }[]>(value as { key: string; value: string }[])
-
+    const options = ref(props.options)
 
     watch(
       () => KVArray.value,
       (newValue) => {
         //@ts-ignore
         onChange(newValue)
+
+        options.value?.forEach((option) => {
+          option.disabled = !!KVArray.value.find((item) => item.key === option.value)
+        })
       },
       { deep: true },
     )
@@ -53,7 +57,7 @@ export const SEditor = defineComponent({
                     onUpdateValue={(platform) => {
                       rowProps.value.key = platform
                     }}
-                    options={props.options}
+                    options={options.value}
                   ></NSelect>
                   <NInput v-model:value={rowProps.value.value}></NInput>
                 </div>

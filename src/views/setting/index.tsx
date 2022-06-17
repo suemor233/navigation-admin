@@ -94,8 +94,11 @@ export default defineComponent({
         <ContentLayout>
           <div class={'flex justify-center flex-row '}>
             <div>
-      
-                <Avatar bordered={true} color="secondary" round src={settingForm.avatar} size={200}></Avatar>
+              <div
+                class={'bg-transparent border-gray-200 border-8 rounded-full justify-center flex items-center'}
+              >
+                <Avatar round src={settingForm.avatar} size={200}></Avatar>
+              </div>
               <div class={'text-center'}>
                 <div class={'mt-8'}>
                   <p>上次登录时间</p>
