@@ -26,7 +26,8 @@ export const useUser = defineStore('useUser', () => {
   const patchUserInfo = async (data:SettingFormType) => {
     const res = await patchUser(data)
     if (res) {
-      await updateUserInfo()
+      console.log(res);
+      user.value = res
       return res
     }
   }

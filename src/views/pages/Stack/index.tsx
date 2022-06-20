@@ -36,7 +36,7 @@ export const StackView = defineComponent({
       if (res) {
         StackValue.value = res.data
         return true
-      }
+      } 
     }
 
     onMounted(async () => {
