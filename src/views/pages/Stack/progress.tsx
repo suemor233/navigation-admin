@@ -25,9 +25,7 @@ export const ProgressView = defineComponent({
         progressValue: '',
       }
     }
-
     
-
     return () => (
       <>
         <div class={'mt-2'}>
