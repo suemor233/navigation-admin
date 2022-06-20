@@ -16,9 +16,8 @@ export const ProgressView = defineComponent({
     const basicValue = ref<StackType[]>(props.stackValue)
 
     watch(basicValue, (newValue) => {
-      // console.log(newValue);
       props.onUpdateValue && props.onUpdateValue(basicValue.value)
-    })
+    },{deep:true})
 
     const onCreate = () => {
       return {
@@ -26,6 +25,8 @@ export const ProgressView = defineComponent({
         progressValue: '',
       }
     }
+
+    
 
     return () => (
       <>

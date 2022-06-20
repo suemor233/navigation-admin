@@ -1,6 +1,6 @@
 export interface StackType {
-  id: string
+  id?: string
   name: string
   progressValue: string
-  created: string
+  created?: string
 }

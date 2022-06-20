@@ -4,7 +4,7 @@ import { SendIcon } from '@/components/icons'
 import { ContentLayout } from '@/layouts/content'
 import { StackType } from '@/models/StackType'
 import { useMessage } from 'naive-ui'
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
 import { ProgressView } from './progress'
 export const StackView = defineComponent({
   setup(props, ctx) {
@@ -22,6 +22,7 @@ export const StackView = defineComponent({
       ),
     }
 
+
     const handleStackUpdate = async (value: StackType[]) => {
       const success = await updateStack(value)
       if (success) {
@@ -37,6 +38,7 @@ export const StackView = defineComponent({
         return true
       }
     }
+
     onMounted(async () => {
       handleStackInfo()
     })
