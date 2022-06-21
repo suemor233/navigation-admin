@@ -98,7 +98,7 @@ export default defineComponent({
                 description="一切就绪了"
               />
             </NSteps>
-            <div class="mt-10">
+            <div class="mt-6">
               <KeepAlive>
                 {h([Step1, Step2, Step3][step.value], {
                   onNext: async (data) => {
