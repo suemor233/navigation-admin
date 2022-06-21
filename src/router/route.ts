@@ -1,8 +1,8 @@
 import { StackView } from './../views/pages/Stack/index';
-import { ProjectView } from './../views/pages/Project/index';
 import { AboutView } from './../views/pages/About/index';
 import { RouteName } from './name';
 import { LoginPage } from "@/views/login";
+import Setuplayout from "@/layouts/setup-view";
 import { RouteRecordRaw } from "vue-router";
 import { SidebarLayout } from '@/layouts/sidebar';
 import { DashBoardView } from '@/views/dashboard';
@@ -10,7 +10,6 @@ import { DashboardOutlined } from '@vicons/antd'
 import { renderIcon } from '@/components/Icon';
 import { BuildOutline, FlaskOutline, SettingsOutline } from '@vicons/ionicons5';
 import { $RouterView } from '@/layouts/router-view';
-import { EyeIcon, FlaskIcon, PencilAltIcon } from '@/components/icons';
 import Eye from '@vicons/tabler/es/Eye'
 import Pencil from '@vicons/tabler/es/Pencil'
 export const routeForMenu: Array<RouteRecordRaw> = [
@@ -107,5 +106,17 @@ export const routes: RouteRecordRaw[] = [
     name: RouteName.Login,
     meta: { isPublic: true, title: '登陆' },
     component: LoginPage
+  },
+  {
+    path: "/",
+    component:Setuplayout,
+    children:[
+      {
+        path: "/setup",
+        name: RouteName.Setup,
+        meta: { isPublic: true, title: '初始化' },
+        component: () => import('../views/setup/index'),
+      }
+    ]
   }
 ];

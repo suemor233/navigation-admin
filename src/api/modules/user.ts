@@ -1,9 +1,17 @@
 import client from "@/api/umi-request";
 import { SettingFormType } from "@/views/setting";
 
+type userBaseType = {
+    username:string,
+    password:string
+}
 
-export function login(data: {username?:string,password?:string}) {
+export function login(data:userBaseType) {
     return client.post('/user/login', {data})
+}
+
+export function register(data:SettingFormType) {
+    return client.post('/user/register',{data})
 }
 
 export function userInfo() {
@@ -16,4 +24,8 @@ export function patchUser(data:SettingFormType) {
 
 export function check() {
     return client.get('/user/check_logged')
+}
+
+export function checkInit() {
+    return client.get('/user/init')
 }

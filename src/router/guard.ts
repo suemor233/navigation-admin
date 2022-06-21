@@ -1,11 +1,7 @@
 import { useUser } from '@/store/user';
-import { check } from '@/api/modules/user'
-import { removeToken } from '@/utils/auth'
-import { useMessage } from 'naive-ui'
+import { check, checkInit } from '@/api/modules/user'
 import QProgress from 'qier-progress'
 import { router } from './router'
-
-
 
 const qprogress = new QProgress()
 router.beforeEach(async (to) => {
@@ -13,14 +9,16 @@ router.beforeEach(async (to) => {
   if (!to.meta.isPublic) {
     const ok = await check()
     if (!ok) {
-      const { logout } = useUser()
-      logout()
-      return '/Login'
+      const isInit = await checkInit()
+      if (isInit.is_init) {
+        const { logout } = useUser()
+        logout()
+        router.push('/login')
+      } else {
+        router.push('/setup')
+      }
     }
-  }else{
-    const { logout } = useUser()
-    logout()
-  }
+  } 
 })
 
 router.afterEach((to, _) => {
