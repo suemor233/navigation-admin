@@ -45,6 +45,7 @@ export default defineComponent({
     })
 
     const handleLogin = async () => {
+      if (!user.password) return
       const res = await userLogin(user.username,user.password)
       if (res) {
         toast.success('登录成功')

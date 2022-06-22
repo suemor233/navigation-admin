@@ -15,11 +15,18 @@ export default defineComponent({
     return () => (
       <>
         <div>
-          <div class={'fixed top-0 left-0 right-0 bottom-0 bg-cover bg-center bg-no-repeat -m-4 bg-gray-600 ease-linear transition-opacity duration-700 filter blur-sm'} 
-          style={{backgroundImage:`url(${bgUrl})`,opacity:loaded.value ? 1 :0.4}}></div>
-          <RouterView/>
+          <div
+            class={
+              'fixed top-0 left-0 right-0 bottom-0 bg-cover bg-center bg-no-repeat -m-4 bg-gray-600 ease-linear transition-opacity duration-700 filter blur-sm'
+            }
+            style={{
+              backgroundImage: `url(${bgUrl})`,
+              opacity: loaded.value ? 1 : 0.4,
+            }}
+          ></div>
+          <RouterView />
         </div>
       </>
     )
-  }
+  },
 })
