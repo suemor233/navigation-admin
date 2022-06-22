@@ -7,6 +7,7 @@ const qprogress = new QProgress()
 router.beforeEach(async (to) => {
   qprogress.start()
   if (!to.meta.isPublic) {
+
     const ok = await check()
     if (!ok) {
       const isInit = await checkInit()

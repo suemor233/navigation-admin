@@ -95,14 +95,6 @@ export const routeForMenu: Array<RouteRecordRaw> = [
 
 export const routes: RouteRecordRaw[] = [
   {
-    path: '/',
-    component: SidebarLayout,
-    name: RouteName.Home,
-    redirect: '/dashboard',
-    children: [...routeForMenu],
-  },
-
-  {
     path: "/",
     component:Setuplayout,
     children:[
@@ -119,5 +111,14 @@ export const routes: RouteRecordRaw[] = [
         component: () => import('../views/login/index'),
       },
     ]
-  }
+  },
+  {
+    path: '/',
+    component: SidebarLayout,
+    name: RouteName.Home,
+    redirect: '/dashboard',
+    children: [...routeForMenu],
+  },
+
+ 
 ];

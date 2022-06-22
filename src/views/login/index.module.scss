@@ -1,8 +1,8 @@
 .wrapper {
   @apply absolute flex justify-center flex-col items-center;
-  top: 50%;
+  top: 45%;
   left: 50%;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -50%);
   .name {
     @apply text-center font-sans text-white text-xl font-semibold;
     text-shadow: #000 0.5px 0 0, #000 0 0.5px 0, #000 -0.5px 0 0,
