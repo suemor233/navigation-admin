@@ -1,0 +1,16 @@
+
+  .input-wrap {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-top: 1em;
+    & input {
+      -webkit-text-fill-color: #eeeeee;
+      color: #eee;
+      width: 12em;
+      @apply bg-white bg-opacity-20 rounded-3xl tracking-wider py-0.5;
+      padding-left: 15px;
+      padding-right: 2.5em;
+      line-height: 1.8;
+    }
+  }

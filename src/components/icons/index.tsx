@@ -46,6 +46,7 @@ import AddLinkFilled from '@vicons/material/es/AddLinkFilled'
 import BubbleChartFilled from '@vicons/material/es/BubbleChartFilled'
 import FullscreenExitOutlined from '@vicons/material/es/FullscreenExitOutlined'
 import OnlinePredictionFilled from '@vicons/material/es/OnlinePredictionFilled'
+import ArrowCircleRight28Regular from '@vicons/fluent/es/ArrowCircleRight28Regular'
 import RedoRound from '@vicons/material/es/RedoRound'
 import UndoRound from '@vicons/material/es/UndoRound'
 import Activity from '@vicons/tabler/es/Activity'
@@ -57,6 +58,7 @@ import Log from '@vicons/tabler/es/News'
 import Pencil from '@vicons/tabler/es/Pencil'
 import Settings from '@vicons/tabler/es/Settings'
 import { defineComponent } from 'vue'
+import { Icon } from '@vicons/utils'
 
 export { Lock as LockIcon }
 export { Pen as PenIcon }
@@ -204,6 +206,16 @@ export const DeleteIcon = defineComponent({
 export const SendIcon = defineComponent({
   setup() {
     return () => <TelegramPlane />
+  },
+})
+
+export const LoginInputIcon = defineComponent({
+  setup() {
+    return () => (
+      <Icon color="white" size={25}>
+        <ArrowCircleRight28Regular />
+      </Icon>
+    )
   },
 })
 

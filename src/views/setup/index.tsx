@@ -21,6 +21,7 @@ import {
   h,
   KeepAlive,
   onBeforeMount,
+  onMounted,
   PropType,
   reactive,
   ref,
@@ -40,6 +41,8 @@ export default defineComponent({
       }
       removeToken()
     })
+
+
 
     const user = reactive({})
     return () => (

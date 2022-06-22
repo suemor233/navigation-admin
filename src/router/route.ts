@@ -101,12 +101,7 @@ export const routes: RouteRecordRaw[] = [
     redirect: '/dashboard',
     children: [...routeForMenu],
   },
-  {
-    path: "/login",
-    name: RouteName.Login,
-    meta: { isPublic: true, title: '登陆' },
-    component: LoginPage
-  },
+
   {
     path: "/",
     component:Setuplayout,
@@ -115,8 +110,14 @@ export const routes: RouteRecordRaw[] = [
         path: "/setup",
         name: RouteName.Setup,
         meta: { isPublic: true, title: '初始化' },
-        component: () => import('../views/setup/index'),
-      }
+        component: () => import('../views/setup'),
+      },
+      {
+        path: "/login",
+        name: RouteName.Login,
+        meta: { isPublic: true, title: '登陆' },
+        component: () => import('../views/login/index'),
+      },
     ]
   }
 ];
