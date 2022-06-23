@@ -42,8 +42,6 @@ export default defineComponent({
       removeToken()
     })
 
-
-
     const user = reactive({})
     return () => (
       <>
@@ -216,6 +214,7 @@ const Step2 = defineComponent({
             <NInput
               v-model:value={user.mail}
               onKeyup={(e: any) => e.key === 'Enter' && handleNext()}
+              autofocus
             />
           </NFormItem>
           <NFormItem label="头像">

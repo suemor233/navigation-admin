@@ -1,16 +1,47 @@
+.input-wrap {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-top: 1em;
+  & input {
+    -webkit-text-fill-color: #eeeeee;
+    color: #eee;
+    width: 12em;
+    @apply bg-white bg-opacity-20 rounded-3xl tracking-wider py-0.5;
+    padding-left: 15px;
+    padding-right: 2.5em;
+    line-height: 1.8;
+    transition: all 0.3s ease-in-out;
 
-  .input-wrap {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    margin-top: 1em;
-    & input {
-      -webkit-text-fill-color: #eeeeee;
-      color: #eee;
-      width: 12em;
-      @apply bg-white bg-opacity-20 rounded-3xl tracking-wider py-0.5;
-      padding-left: 15px;
-      padding-right: 2.5em;
-      line-height: 1.8;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.25);
     }
   }
+}
+.shake-input {
+  animation: shake 800ms ease-in-out;
+
+  @keyframes shake {
+    /* 水平抖动，核心代码 */
+    10%,
+    90% {
+      transform: translate3d(-7px, 0, 0);
+    }
+    20%,
+    80% {
+      transform: translate3d(+8px, 0, 0);
+    }
+    30%,
+    70% {
+      transform: translate3d(-10px, 0, 0);
+    }
+    40%,
+    60% {
+      transform: translate3d(+10px, 0, 0);
+    }
+    50% {
+      transform: translate3d(-10px, 0, 0);
+    }
+  }
+}
