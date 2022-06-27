@@ -4,11 +4,9 @@ import { RouteName } from '@/router/name'
 import { NAvatar, NButton, useMessage } from 'naive-ui'
 import { defineComponent, onBeforeMount, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { login } from '@/api/modules/user'
 import { LoginInput } from '@/components/input/login-input'
 import { useUser } from '@/store/user'
-import { el } from 'date-fns/locale'
-import Avatar from '@/components/avatar'
+
 interface LoginUserType {
   username: string
   password: string

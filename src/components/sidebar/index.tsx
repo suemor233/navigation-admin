@@ -12,6 +12,7 @@ import useSideBar from '@/hooks/SiderBar'
 import { useMediaQuery } from '@vueuse/core'
 import { useUser } from '@/store/user'
 import { storeToRefs } from 'pinia'
+import Avatar from '../avatar'
 
 export const SideBar = defineComponent({
   setup(props, ctx) {
@@ -26,16 +27,18 @@ export const SideBar = defineComponent({
       collapsed.value = !isLargeScreen.value
     })
 
-    const fullPathValue: ComputedRef<string> = computed(() => {  
-        return route.fullPath
+    const fullPathValue: ComputedRef<string> = computed(() => {
+      if (route.name === 'setting') {
+        return '/' + route.name
+      }
+
+      return route.fullPath
     })
     const themeOverrides: GlobalThemeOverrides = {
       common: {
         hoverColor: '#d4e6df',
       },
     }
-
-    
 
     return () => (
       <>
@@ -52,10 +55,9 @@ export const SideBar = defineComponent({
         >
           <div class={classes.avatar}>
             <div onClick={() => router.push('/dashboard')}>
-              <NAvatar
-                size={collapsed.value ? 50 :100}
+              <Avatar
+                size={collapsed.value ? 50 : 100}
                 src={user.value?.avatar}
-                class={classes.ImgAvatar}
               />
             </div>
 

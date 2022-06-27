@@ -55,9 +55,10 @@ function useSideBar() {
     },
     {
       label: '设定',
-      key: '/setting/' + RouteName.User,
+      key: '/setting',
       icon: renderIcon(SettingsOutline),
     },
+    
   ]
   return {
     handleUpdateValue,

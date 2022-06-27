@@ -6,7 +6,7 @@
   .avatar{
     text-align: center;
     padding-top: 1rem;
-
+    cursor: pointer;
 
     @-webkit-keyframes rotation{
       from {-webkit-transform: rotate(0deg);}
@@ -19,13 +19,6 @@
       color: #6bb09c;
       cursor: pointer;
     }
-    .ImgAvatar{
-      margin: 0 auto;
-      border-radius: 50%;
-      cursor: pointer;
-   
-    }
-
   }
 }
 

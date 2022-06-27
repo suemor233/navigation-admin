@@ -8,7 +8,7 @@ export default defineComponent({
     },
     src: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   setup(props) {

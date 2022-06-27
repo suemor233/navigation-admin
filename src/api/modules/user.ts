@@ -1,5 +1,5 @@
 import client from "@/api/umi-request";
-import { SettingFormType } from "@/views/setting";
+import { SettingFormType } from "@/views/setting/tabs/user";
 
 type userBaseType = {
     username:string,

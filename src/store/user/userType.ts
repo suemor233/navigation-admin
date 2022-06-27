@@ -1,5 +1,6 @@
 export interface IUser {
   token:string,
+  password:string,
   lastLoginTime:string,
   lastLoginIp:string,
   username:string,

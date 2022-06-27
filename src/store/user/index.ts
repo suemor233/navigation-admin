@@ -1,14 +1,16 @@
+import { RouteName } from '@/router/name';
+import { useRouter } from 'vue-router';
 import { removeToken, setToken } from '@/utils/auth';
 
 import { onBeforeMount, ref } from 'vue';
 import { acceptHMRUpdate, defineStore } from "pinia";
 import { check, login, patchUser, userInfo, } from '@/api/modules/user';
 import { IUser } from './userType';
-import { SettingFormType } from '@/views/setting';
+import { SettingFormType } from '@/views/setting/tabs/user';
 
 export const useUser = defineStore('useUser', () => {
   const user = ref<IUser | null>(null);
-
+  const router = useRouter()
   const userLogin = async (username: string, password: string) => {
     const res = await login({ username, password })
     user.value = res
@@ -40,6 +42,7 @@ export const useUser = defineStore('useUser', () => {
   const logout = () =>{
     user.value = null
     removeToken()
+    router.push({name:RouteName.Login})
   }
 
 
