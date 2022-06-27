@@ -1,4 +1,5 @@
 import { patchUser } from '@/api/modules/user'
+import { RouteName } from '@/router/name';
 import { useUser } from '@/store/user'
 import {
   FormInst,
@@ -9,6 +10,7 @@ import {
   useMessage,
 } from 'naive-ui'
 import { defineComponent, reactive, ref } from 'vue'
+import { useRouter } from 'vue-router';
 
 export const autosizeableProps = {
   autosize: true,
@@ -21,6 +23,7 @@ export const TabSecurity = defineComponent({
     const formRef = ref<FormInst | null>(null)
     const user = useUser()
     const toast = useMessage()
+    const router = useRouter()
     const resetPassword = reactive({
       password: '',
       reenteredPassword: '',
@@ -42,6 +45,7 @@ export const TabSecurity = defineComponent({
           if (res) {
             toast.success('修改成功')
             user.logout()
+            router.push({name:RouteName.Login})
           }
         } else {
           console.log(err)
