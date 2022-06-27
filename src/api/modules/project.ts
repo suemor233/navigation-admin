@@ -1,6 +1,6 @@
 import client from "@/api/umi-request";
-import { AboutType } from "@/views/pages/About";
-import { ProjectDataType } from "@/views/pages/Project/edit";
+import { AboutType } from "@/views/pages/about/list/list";
+import { ProjectDataType } from "@/views/pages/project/edit";
 
 
 export function projectInfo(params:any) {

@@ -42,7 +42,6 @@ export const useUser = defineStore('useUser', () => {
   const logout = () =>{
     user.value = null
     removeToken()
-    router.push({name:RouteName.Login})
   }
 
 

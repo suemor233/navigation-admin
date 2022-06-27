@@ -30,6 +30,18 @@ function useSideBar() {
       label: '关于',
       key: '/' + RouteName.About,
       icon: renderIcon(OrderDetails),
+      children: [
+        {
+          label: '关于列表',
+          key: '/' + RouteName.About + '/' + RouteName.List + '?page=1',
+          icon: renderIcon(Eye),
+        },
+        {
+          label: '创建介绍',
+          key: '/' + RouteName.About + '/' + RouteName.Edit,
+          icon: renderIcon(Pencil),
+        },
+      ],
     },
     {
       label: '项目',
@@ -38,12 +50,12 @@ function useSideBar() {
       children: [
         {
           label: '项目列表',
-          key: '/' + RouteName.Projects + '/' + RouteName.ListProject + '?page=1',
+          key: '/' + RouteName.Projects + '/' + RouteName.List + '?page=1',
           icon: renderIcon(Eye),
         },
         {
           label: '创建项目',
-          key: '/' + RouteName.Projects + '/' + RouteName.EditProject,
+          key: '/' + RouteName.Projects + '/' + RouteName.Edit,
           icon: renderIcon(Pencil),
         },
       ],

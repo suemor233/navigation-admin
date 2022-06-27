@@ -1,5 +1,5 @@
 import client from "@/api/umi-request";
-import { AboutType } from "@/views/pages/About";
+import { AboutType } from "@/views/pages/about/list/list";
 
 
 export function aboutInfo() {

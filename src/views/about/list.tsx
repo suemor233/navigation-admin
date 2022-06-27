@@ -3,10 +3,11 @@ import { HeaderActionButton } from '@/components/button/rounded-button'
 import { SendIcon } from '@/components/icons'
 import { ContentLayout } from '@/layouts/content'
 import { CheckmarkSharp } from '@vicons/ionicons5'
-import { useMessage } from 'naive-ui'
-import { defineComponent, onMounted, reactive, ref } from 'vue'
-import { BasicAboutView } from './basic'
-import { DetailAboutView } from './detail'
+import { NCollapse, NCollapseItem, NDynamicInput, useMessage } from 'naive-ui'
+import { defineComponent, onMounted, PropType, reactive, ref, watch } from 'vue'
+import { BasicAboutView } from './tabs/basic'
+import { DetailAboutView } from './tabs/detail'
+
 export interface AboutType {
   id: string
   key: string
@@ -15,7 +16,7 @@ export interface AboutType {
   created: string
 }
 
-export const AboutView = defineComponent({
+export default defineComponent({
   setup(props, ctx) {
     const toast = useMessage()
     const slots = {
@@ -32,7 +33,6 @@ export const AboutView = defineComponent({
             }
           }}
         ></HeaderActionButton>
-        
       ),
     }
 
@@ -44,34 +44,19 @@ export const AboutView = defineComponent({
     onMounted(async () => {
       const res = await aboutInfo()
       aboutValue.value = res.data
-
-
       updateAboutbasic = aboutValue.value?.filter(
         (item) => item.detailFlag === false,
       ) as AboutType[]
       updateAboutDetail = aboutValue.value?.filter(
         (item) => item.detailFlag === true,
       ) as AboutType[]
-
     })
 
     return () => (
       <>
         <ContentLayout v-slots={slots}>
-          <div class={'flex flex-row w-full justify-around'}>
-            <div>
-              <p>基本信息</p>
-              {aboutValue.value && (
-                <BasicAboutView
-                  aboutValue={updateAboutbasic}
-                  onUpdateValue={(value) => {
-                    updateAboutbasic = value
-                  }}
-                />
-              )}
-            </div>
-            <div>
-              <p>简要介绍</p>
+          <NCollapse defaultExpandedNames={['detail']} displayDirective="show">
+            <NCollapseItem title="简要介绍" name="detail">
               {aboutValue.value && (
                 <DetailAboutView
                   aboutValue={updateAboutDetail}
@@ -80,8 +65,18 @@ export const AboutView = defineComponent({
                   }}
                 />
               )}
-            </div>
-          </div>
+            </NCollapseItem>
+            <NCollapseItem title="基本信息" name="basic">
+              {aboutValue.value && (
+                <BasicAboutView
+                  aboutValue={updateAboutbasic}
+                  onUpdateValue={(value) => {
+                    updateAboutbasic = value
+                  }}
+                />
+              )}
+            </NCollapseItem>
+          </NCollapse>
         </ContentLayout>
       </>
     )

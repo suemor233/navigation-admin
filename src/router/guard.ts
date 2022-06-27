@@ -2,6 +2,7 @@ import { useUser } from '@/store/user';
 import { check, checkInit } from '@/api/modules/user'
 import QProgress from 'qier-progress'
 import { router } from './router'
+import { RouteName } from '@/router/name';
 
 const qprogress = new QProgress()
 router.beforeEach(async (to) => {
@@ -11,12 +12,15 @@ router.beforeEach(async (to) => {
     const ok = await check()
     if (!ok) {
       const isInit = await checkInit()
+
       if (isInit.is_init) {
         const { logout } = useUser()
+
         logout()
-        router.push('/login')
+
+        router.push({name:RouteName.Login})
       } else {
-        router.push('/setup')
+        router.push({name:RouteName.Setup})
       }
     }
   } 

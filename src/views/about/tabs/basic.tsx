@@ -1,7 +1,6 @@
-import { aboutInfo } from '@/api/modules/about'
 import { NDynamicInput } from 'naive-ui'
-import { defineComponent, onMounted, PropType, Ref, ref, watch } from 'vue'
-import { AboutType } from './index'
+import { defineComponent, PropType, ref, watch } from 'vue'
+import { AboutType } from '../list'
 
 export const BasicAboutView = defineComponent({
   name: 'BasicAboutView',

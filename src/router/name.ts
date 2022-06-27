@@ -10,6 +10,10 @@ export enum RouteName {
     Home = 'home',
     User = 'user',
     Post = 'post',
-    ListProject = 'list',
-    EditProject = 'edit'
+    ListProject = 'project-list',
+    EditProject = 'project-edit',
+    ListAbout = 'about-list',
+    EditAbout = 'about-edit',
+    List = 'list',
+    Edit = 'edit',
 }

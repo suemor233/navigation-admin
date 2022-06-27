@@ -1,12 +1,11 @@
 import {
-  GlobalThemeOverrides,
   NConfigProvider,
   NDialogProvider,
   NMessageProvider,
   useMessage,
   zhCN,
 } from 'naive-ui'
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   setup(props, ctx) {
@@ -28,9 +27,9 @@ export const messageWrapper = defineComponent({
   setup(props, ctx) {
     window.$message = useMessage()
     return () => (
-      <div>
+      <>
         <router-view />
-      </div>
+      </>
     )
   },
 })

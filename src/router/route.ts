@@ -1,7 +1,5 @@
-import { StackView } from './../views/pages/Stack/index';
-import { AboutView } from './../views/pages/About/index';
+import { StackView } from '../views/stack/index';
 import { RouteName } from './name';
-import { LoginPage } from "@/views/login";
 import Setuplayout from "@/layouts/setup-view";
 import { RouteRecordRaw } from "vue-router";
 import { SidebarLayout } from '@/layouts/sidebar';
@@ -24,12 +22,33 @@ export const routeForMenu: Array<RouteRecordRaw> = [
   },
   {
     path: 'about',
-    component: AboutView,
+    component: $RouterView,
     name: RouteName.About,
     meta: {
       title: '关于',
       icon: renderIcon(DashboardOutlined),
     },
+    children: [
+      {
+        path: 'list',
+        name: RouteName.ListAbout,
+        meta: {
+          title: '关于列表',
+          query: { page: 1 },
+          icon: renderIcon(Eye),
+        },
+        component: () => import('../views/about/list'),
+      },
+      {
+        path: 'edit',
+        name: RouteName.EditAbout,
+        meta: {
+          title: '创建介绍',
+          icon: renderIcon(Pencil),
+        },
+        component: () => import('../views/about/edit'),
+      },
+    ],
   },
   {
     path: 'projects',
@@ -48,7 +67,7 @@ export const routeForMenu: Array<RouteRecordRaw> = [
           query: { page: 1 },
           icon: renderIcon(Eye),
         },
-        component: () => import('../views/pages/Project/list'),
+        component: () => import('../views/project/list'),
       },
       {
         path: 'edit',
@@ -57,7 +76,7 @@ export const routeForMenu: Array<RouteRecordRaw> = [
           title: '创建项目',
           icon: renderIcon(Pencil),
         },
-        component: () => import('../views/pages/Project/edit'),
+        component: () => import('../views/project/edit'),
       },
     ],
   },
@@ -120,5 +139,5 @@ export const routes: RouteRecordRaw[] = [
       },
     ]
   },
- 
+
 ];
