@@ -76,6 +76,7 @@ export const routeForMenu: Array<RouteRecordRaw> = [
           title: '创建项目',
           icon: renderIcon(Pencil),
         },
+        
         component: () => import('../views/project/edit'),
       },
     ],

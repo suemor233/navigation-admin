@@ -1,9 +1,10 @@
 import client from "@/api/umi-request";
-import { AboutType } from "@/views/pages/about/list/list";
-import { ProjectDataType } from "@/views/pages/project/edit";
+import { PageType } from "@/models/Page";
+import { ProjectDataType } from "@/views/Project/edit";
 
 
-export function projectInfo(params:any) {
+
+export function projectInfo(params:PageType) {
     return client.get('/project',{params})
 }
 

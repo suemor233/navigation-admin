@@ -8,6 +8,7 @@ import { DataTableColumns, NButton, NDataTable, NSpace } from 'naive-ui'
 import { defineComponent, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ProjectDataType } from './edit'
+import { RouteName } from '@/router/name';
 
 interface ProjectReturnDataType {
   project: ProjectDataType[]
@@ -39,9 +40,9 @@ export default defineComponent({
         </>
       )
     }
-  
+
     const handlePageChange = async (
-      pageNum = route.query.page || 1,
+      pageNum = (route.query.page || 1) as number,
       pageSize: number = 10,
     ) => {
       const res = (await projectInfo({
@@ -112,7 +113,7 @@ export default defineComponent({
                 class={'text-green-600'}
                 onClick={() => {
                   router.push({
-                    name:'edit',
+                    name:RouteName.Edit,
                     query:{
                       id:row.id
                     }

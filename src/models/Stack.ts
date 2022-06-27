@@ -1,4 +1,4 @@
-export interface StackType {
+export interface Stack {
   id?: string
   name: string
   progressValue: string

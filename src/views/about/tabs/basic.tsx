@@ -1,26 +1,23 @@
+import { BasicDataType } from '@/models/About'
 import { NDynamicInput } from 'naive-ui'
 import { defineComponent, PropType, ref, watch } from 'vue'
-import { AboutType } from '../list'
+
 
 export const BasicAboutView = defineComponent({
-  name: 'BasicAboutView',
   props: {
     aboutValue: {
-      type: Object as PropType<AboutType[]>,
+      type: Object as PropType<BasicDataType[]>,
       required: true,
     },
     onUpdateValue: {
-      type: Function as PropType<(value: AboutType[]) => void>,
+      type: Function as PropType<(value: BasicDataType[]) => void>,
       required: true,
     },
   },
   setup(props, ctx) {
-    const basicValue = ref<AboutType[]>(props.aboutValue)
+    const basicValue = ref<BasicDataType[]>(props.aboutValue)
 
     watch(basicValue, (newValue) => {
-      newValue.forEach((item) => {
-        item.detailFlag = false
-      })
       props.onUpdateValue && props.onUpdateValue(newValue)
     })
 

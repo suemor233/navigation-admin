@@ -1,19 +1,19 @@
-import { StackType } from '@/models/StackType'
+import { Stack } from '@/models/StackType'
 import { NDynamicInput, NInput, NSlider, NSpace } from 'naive-ui'
 import { defineComponent, PropType, ref, watch } from 'vue'
 export const ProgressView = defineComponent({
   props: {
     stackValue: {
-      type: Object as PropType<StackType[]>,
+      type: Object as PropType<Stack[]>,
       required: true,
     },
     onUpdateValue: {
-      type: Function as PropType<(value: StackType[]) => void>,
+      type: Function as PropType<(value: Stack[]) => void>,
       required: true,
     },
   },
   setup(props, ctx) {
-    const basicValue = ref<StackType[]>(props.stackValue)
+    const basicValue = ref<Stack[]>(props.stackValue)
 
     watch(basicValue, (newValue) => {
       props.onUpdateValue && props.onUpdateValue(basicValue.value)
@@ -25,7 +25,7 @@ export const ProgressView = defineComponent({
         progressValue: '',
       }
     }
-    
+
     return () => (
       <>
         <div class={'mt-2'}>

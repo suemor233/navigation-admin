@@ -47,8 +47,4 @@ client.interceptors.response.use(async (response: any) => {
     return response
 })
 
-
-
-
-
 export default client

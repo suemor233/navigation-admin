@@ -2,13 +2,13 @@ import { stackInfo, updateStack } from '@/api/modules/stack'
 import { HeaderActionButton } from '@/components/button/rounded-button'
 import { SendIcon } from '@/components/icons'
 import { ContentLayout } from '@/layouts/content'
-import { StackType } from '@/models/StackType'
+import { Stack } from '@/models/StackType'
 import { useMessage } from 'naive-ui'
 import { defineComponent, onMounted, ref, watch } from 'vue'
 import { ProgressView } from './progress'
 export const StackView = defineComponent({
   setup(props, ctx) {
-    const StackValue = ref<StackType[] | null>(null)
+    const StackValue = ref<Stack[] | null>(null)
     const toast = useMessage()
     const slots = {
       header: () => (
@@ -23,7 +23,7 @@ export const StackView = defineComponent({
     }
 
 
-    const handleStackUpdate = async (value: StackType[]) => {
+    const handleStackUpdate = async (value: Stack[]) => {
       const success = await updateStack(value)
       if (success) {
         toast.success('修改成功')
@@ -32,11 +32,11 @@ export const StackView = defineComponent({
     }
 
     const handleStackInfo = async () => {
-      const res = (await stackInfo()) as Record<'data', StackType[]>
+      const res = (await stackInfo()) as Record<'data', Stack[]>
       if (res) {
         StackValue.value = res.data
         return true
-      } 
+      }
     }
 
     onMounted(async () => {

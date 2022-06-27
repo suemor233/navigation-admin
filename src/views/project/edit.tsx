@@ -12,7 +12,7 @@ import { useRoute } from 'vue-router'
 export interface ProjectDataType {
   id?: string
   name: string
-  url?: any
+  url?: string
   img: string
   created?: string
 }
