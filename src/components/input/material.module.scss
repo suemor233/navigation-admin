@@ -2,12 +2,13 @@
   * {
     box-sizing: border-box;
   }
-  & .group {
+  &.group {
     position: relative;
     width: 100%;
   }
   input {
     @apply bg-transparent;
+
     font-size: 18px;
     padding: 10px 10px 10px 5px;
     display: block;
@@ -36,7 +37,8 @@
   /* active state */
   input:focus ~ label,
   input:valid ~ label {
-    color: #18A058FF;
+    @apply text-primary-deep;
+
     top: -20px;
     font-size: 16px;
   }
@@ -49,7 +51,8 @@
   }
   .bar:before,
   .bar:after {
-    background-color: #18A058FF;
+    @apply bg-primary-default;
+
     content: '';
     height: 1px;
     width: 0;
