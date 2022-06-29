@@ -67,6 +67,14 @@ export default defineComponent({
       }
     })
 
+
+    watch(
+      () => route.query.id,
+      (id) => {
+        route.name === RouteName.EditProject && !id && location.reload()
+      },
+    )
+
     return () => (
       <>
         <ContentLayout v-slots={slots}>

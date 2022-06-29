@@ -1,36 +1,38 @@
+import { basicInfo, updateBasic } from '@/api/modules/about'
 import { BasicDataType } from '@/models/About'
-import { NDynamicInput } from 'naive-ui'
-import { defineComponent, PropType, ref, watch } from 'vue'
-
+import { NButton, NDynamicInput, NSpace, useMessage } from 'naive-ui'
 
 export const BasicAboutView = defineComponent({
-  props: {
-    aboutValue: {
-      type: Object as PropType<BasicDataType[]>,
-      required: true,
-    },
-    onUpdateValue: {
-      type: Function as PropType<(value: BasicDataType[]) => void>,
-      required: true,
-    },
-  },
   setup(props, ctx) {
-    const basicValue = ref<BasicDataType[]>(props.aboutValue)
-
-    watch(basicValue, (newValue) => {
-      props.onUpdateValue && props.onUpdateValue(newValue)
+    const basicValue = ref<BasicDataType[]>()
+    const toast = useMessage()
+    onMounted(async () => {
+      const res = await basicInfo()
+      if (res) {
+        basicValue.value = res.data
+      }
     })
+
+    const handleSave = async () => {
+      if (basicValue.value) {
+        const res = await updateBasic(basicValue.value)
+        res && toast.success('保存成功')
+      }
+    }
 
     return () => (
       <>
-        <div class={'mt-2'}>
+        <NSpace vertical size={'large'}>
           <NDynamicInput
             v-model:value={basicValue.value}
             preset={'pair'}
             keyPlaceholder={'基本信息名称'}
             valuePlaceholder={'基本信息值'}
           />
-        </div>
+            <NButton type="primary" onClick={handleSave}>
+              保存
+            </NButton>
+        </NSpace>
       </>
     )
   },

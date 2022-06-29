@@ -4,7 +4,6 @@ import {
   NLayoutSider,
   NMenu,
   NConfigProvider,
-  NAvatar,
 } from 'naive-ui'
 import { useRoute, useRouter } from 'vue-router'
 import classes from './index.module.scss'

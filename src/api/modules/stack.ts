@@ -1,5 +1,5 @@
 import client from "@/api/umi-request";
-import { Stack } from "@/models/StackType";
+import { Stack } from "@/models/Stack";
 
 
 export function stackInfo() {

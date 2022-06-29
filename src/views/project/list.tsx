@@ -113,7 +113,7 @@ export default defineComponent({
                 class={'text-green-600'}
                 onClick={() => {
                   router.push({
-                    name:RouteName.Edit,
+                    name:RouteName.EditProject,
                     query:{
                       id:row.id
                     }

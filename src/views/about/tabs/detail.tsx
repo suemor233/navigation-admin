@@ -1,14 +1,22 @@
 import { RelativeTime } from '@/components/time/relative-time'
-import { DataTableColumns, NDataTable } from 'naive-ui'
+import { DataTableColumns, NDataTable, useMessage } from 'naive-ui'
 import { defineComponent, PropType, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { DetailDataType, DetailReturnDataType } from '@/models/About'
-import { detailInfo } from '../../../api/modules/about';
+import { deleteDetail, detailInfo } from '../../../api/modules/about'
+import { RouteName } from '@/router/name'
 
 export const DetailAboutView = defineComponent({
+  props: {
+    choiceRow: {
+      type: Function as PropType<(ids: string[]) => void>,
+      require: true,
+    },
+  },
   setup(props, ctx) {
     const router = useRouter()
     const route = useRoute()
+
     const DetailData = ref<DetailReturnDataType | undefined>(undefined)
     const checkedRowKeysRef = ref<string[]>([])
 
@@ -22,14 +30,15 @@ export const DetailAboutView = defineComponent({
       })) as DetailReturnDataType
       if (res) {
         DetailData.value = res
+        console.log(DetailData.value);
       }
     }
+    ctx.expose({handlePageChange})
 
     watch(
       route,
       async () => {
         await handlePageChange()
-
       },
       { immediate: true },
     )
@@ -63,7 +72,7 @@ export const DetailAboutView = defineComponent({
                 class={'text-green-600'}
                 onClick={() => {
                   router.push({
-                    name: 'edit',
+                    name: RouteName.EditAbout,
                     query: {
                       id: row.id,
                     },
@@ -79,6 +88,7 @@ export const DetailAboutView = defineComponent({
     }
     const handleCheck = (rowKeys: any) => {
       checkedRowKeysRef.value = rowKeys
+      props.choiceRow?.(checkedRowKeysRef.value)
     }
     const columns = createColumns()
     return () => (
