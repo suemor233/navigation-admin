@@ -76,7 +76,7 @@ export default defineComponent({
               detailEdit.title = e
             }}
           ></MaterialInput>
-          <div class={'mt-1'}>
+          <div class={'mt-5'}>
             {(isUpdate ? detailEdit.content : true) && (
               <MyVditor
                 text={detailEdit.content}

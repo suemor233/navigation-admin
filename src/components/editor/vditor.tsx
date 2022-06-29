@@ -19,7 +19,7 @@ export const MyVditor = defineComponent({
     onMounted(() => {
       vditor.value = new Vditor(vRef.value, {
         value:props.text,
-        height: '89vh',
+        height: '85vh',
         toolbar: [],
         preview: {
           hljs: {
