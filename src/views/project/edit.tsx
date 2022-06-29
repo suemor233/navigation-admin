@@ -15,6 +15,7 @@ export interface ProjectDataType {
   url?: string
   img: string
   created?: string
+  modified?: string
 }
 
 export default defineComponent({

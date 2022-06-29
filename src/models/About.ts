@@ -11,6 +11,7 @@ export interface DetailDataType {
   title: string
   content: string
   created?: string
+  modified?: string
 }
 
 

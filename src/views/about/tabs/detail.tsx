@@ -83,6 +83,13 @@ export const DetailAboutView = defineComponent({
           },
         },
         {
+          title: '修改日期',
+          key: 'modified',
+          render(row) {
+            return <RelativeTime time={row.modified as string}></RelativeTime>
+          },
+        },
+        {
           title: '操作',
           key: 'update',
           render(row) {

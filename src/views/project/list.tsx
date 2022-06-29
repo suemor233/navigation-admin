@@ -4,7 +4,7 @@ import { AddIcon } from '@/components/icons'
 import { DeleteConfirmButton } from '@/components/special-button/delete-confirm'
 import { RelativeTime } from '@/components/time/relative-time'
 import { ContentLayout } from '@/layouts/content'
-import { DataTableColumns, NButton, NDataTable, NSpace } from 'naive-ui'
+import { DataTableColumns, NButton, NDataTable, NPopconfirm, NSpace, useMessage } from 'naive-ui'
 import { defineComponent, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ProjectDataType } from './edit'
@@ -24,6 +24,7 @@ export default defineComponent({
   setup(props, ctx) {
     const route = useRoute()
     const router = useRouter()
+    const toast = useMessage()
     const slots = {
       header: () => (
         <>
@@ -74,6 +75,23 @@ export default defineComponent({
         {
           title: '名称',
           key: 'name',
+          render(row) {
+            return (
+              <button
+                class={'text-green-600'}
+                onClick={() => {
+                  router.push({
+                    name:RouteName.EditProject,
+                    query:{
+                      id:row.id
+                    }
+                  })
+                }}
+              >
+                {row.name}
+              </button>
+            )
+          },
         },
         {
           title: '项目地址',
@@ -105,26 +123,45 @@ export default defineComponent({
           },
         },
         {
-          title: '编辑',
+          title: '修改日期',
+          key: 'modified',
+          render(row) {
+            return <RelativeTime time={row.modified as string}></RelativeTime>
+          },
+        },
+        {
+          title: '操作',
           key: 'update',
           render(row) {
             return (
-              <button
-                class={'text-green-600'}
-                onClick={() => {
-                  router.push({
-                    name:RouteName.EditProject,
-                    query:{
-                      id:row.id
+              <NSpace>
+                <NPopconfirm
+                  positiveText={'取消'}
+                  negativeText="删除"
+                  onNegativeClick={async () => {
+                    const res = await deleteProject([row.id] as string[])
+                    if (res) {
+                      toast.success('删除成功')
+                      await handlePageChange()
                     }
-                  })
-                }}
-              >
-                编辑
-              </button>
+                  }}
+                >
+                  {{
+                    trigger: () => (
+                      <NButton text type="error" size="tiny">
+                        移除
+                      </NButton>
+                    ),
+
+                    default: () => (
+                      <span class="max-w-48">确定要删除 {row.name} ?</span>
+                    ),
+                  }}
+                </NPopconfirm>
+              </NSpace>
             )
           },
-        },
+        }
       ]
     }
     const handleCheck = (rowKeys: any) => {
