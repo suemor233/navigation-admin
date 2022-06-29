@@ -1,5 +1,12 @@
 import { RelativeTime } from '@/components/time/relative-time'
-import { DataTableColumns, NDataTable, useMessage } from 'naive-ui'
+import {
+  DataTableColumns,
+  NButton,
+  NDataTable,
+  NPopconfirm,
+  NSpace,
+  useMessage,
+} from 'naive-ui'
 import { defineComponent, PropType, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { DetailDataType, DetailReturnDataType } from '@/models/About'
@@ -16,7 +23,7 @@ export const DetailAboutView = defineComponent({
   setup(props, ctx) {
     const router = useRouter()
     const route = useRoute()
-
+    const toast = useMessage()
     const DetailData = ref<DetailReturnDataType | undefined>(undefined)
     const checkedRowKeysRef = ref<string[]>([])
 
@@ -30,10 +37,9 @@ export const DetailAboutView = defineComponent({
       })) as DetailReturnDataType
       if (res) {
         DetailData.value = res
-        console.log(DetailData.value);
       }
     }
-    ctx.expose({handlePageChange})
+    ctx.expose({ handlePageChange })
 
     watch(
       route,
@@ -51,21 +57,6 @@ export const DetailAboutView = defineComponent({
         {
           title: '标题',
           key: 'title',
-        },
-        {
-          title: '内容',
-          key: 'content',
-        },
-        {
-          title: '创建日期',
-          key: 'created',
-          render(row) {
-            return <RelativeTime time={row.created as string}></RelativeTime>
-          },
-        },
-        {
-          title: '编辑',
-          key: 'update',
           render(row) {
             return (
               <button
@@ -79,8 +70,48 @@ export const DetailAboutView = defineComponent({
                   })
                 }}
               >
-                编辑
+                {row.title}
               </button>
+            )
+          },
+        },
+        {
+          title: '创建日期',
+          key: 'created',
+          render(row) {
+            return <RelativeTime time={row.created as string}></RelativeTime>
+          },
+        },
+        {
+          title: '操作',
+          key: 'update',
+          render(row) {
+            return (
+              <NSpace>
+                <NPopconfirm
+                  positiveText={'取消'}
+                  negativeText="删除"
+                  onNegativeClick={async () => {
+                    const res = await deleteDetail([row.id] as string[])
+                    if (res) {
+                      toast.success('删除成功')
+                      await handlePageChange()
+                    }
+                  }}
+                >
+                  {{
+                    trigger: () => (
+                      <NButton text type="error" size="tiny">
+                        移除
+                      </NButton>
+                    ),
+
+                    default: () => (
+                      <span class="max-w-48">确定要删除 {row.title} ?</span>
+                    ),
+                  }}
+                </NPopconfirm>
+              </NSpace>
             )
           },
         },
