@@ -10,21 +10,28 @@ export const BasicAboutView = defineComponent({
     const toast = useMessage()
 
     onMounted(async () => {
+      handleChange()
+    })
+    const diff = computed(() =>
+      deepDiff( {...[origin]}, {...[basicValue.value]}),
+    )
+    const handleSave = async () => {
+
+      if (basicValue.value) {
+        const res = await updateBasic(basicValue.value)
+        res && toast.success('保存成功')
+        handleChange()
+      }
+    }
+
+    const handleChange = async () => {
       const res = (await basicInfo()) as { data: BasicDataType[] }
       if (res) {
+        basicValue.value = []
         res.data.forEach((item) => {
           basicValue.value?.push({ key: item.key, value: item.value })
         })
         origin = basicValue.value
-      }
-    })
-    const diff = computed(() =>
-      deepDiff(origin, basicValue.value as BasicDataType[]),
-    )
-    const handleSave = async () => {
-      if (basicValue.value) {
-        const res = await updateBasic(basicValue.value)
-        res && toast.success('保存成功')
       }
     }
 

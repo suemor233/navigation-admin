@@ -59,6 +59,8 @@ import Pencil from '@vicons/tabler/es/Pencil'
 import Settings from '@vicons/tabler/es/Settings'
 import { defineComponent } from 'vue'
 import { Icon } from '@vicons/utils'
+import { BuildOutline, FlaskOutline } from '@vicons/ionicons5'
+import { OrderDetails } from '@vicons/carbon'
 
 export { Lock as LockIcon }
 export { Pen as PenIcon }
@@ -107,6 +109,8 @@ export {
   Template as TemplateIcon,
   Log as LogIcon,
   Pencil as PencilIcon,
+  BuildOutline as StackIcon,
+  OrderDetails as BasicIcon
 }
 export { QuestionCircleOutlined as QuestionCircleIcon }
 export { SlackHash as SlackHashIcon }

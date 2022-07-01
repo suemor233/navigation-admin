@@ -7,6 +7,7 @@ export enum RouteName {
     Projects = 'projects',
     Stack = 'stack',
     Setting = 'setting',
+    UserSetting = 'user-setting',
     Home = 'home',
     User = 'user',
     Post = 'post',

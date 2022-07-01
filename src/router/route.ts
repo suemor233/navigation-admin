@@ -93,6 +93,7 @@ export const routeForMenu: Array<RouteRecordRaw> = [
   {
     path: '/setting',
     redirect: '/setting/user',
+    name: RouteName.UserSetting,
     meta: {
       title: '设定',
       icon: renderIcon(SettingsOutline),
