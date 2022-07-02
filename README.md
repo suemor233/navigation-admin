@@ -15,8 +15,9 @@
 <p align="middle">
 <img src="https://fastly.jsdelivr.net/gh/suemor233/static@main/img/navigation-admin-1.jpg" width="1000" alt="初始化" />
 <img src="https://fastly.jsdelivr.net/gh/suemor233/static@main/img/navigation-admin-2.jpg" width="1000" alt="登录" />
-<img src="https://fastly.jsdelivr.net/gh/suemor233/static@main/img/navigation-admin-3.jpg" width="1000" alt="我的" />
-<img src="https://fastly.jsdelivr.net/gh/suemor233/static@main/img/navigation-admin-4.jpg" width="1000" alt="项目" />
+<img src="https://fastly.jsdelivr.net/gh/suemor233/static@main/img/n-admin-7.jpg" width="1000" alt="仪表盘" />
+<img src="https://fastly.jsdelivr.net/gh/suemor233/static@main/img/n-admin-6.jpg" width="1000" alt="关于" />
+<img src="https://fastly.jsdelivr.net/gh/suemor233/static@main/img/n-admin-5.jpg" width="1000" alt="我的" />
 </p>
 
 ## Reference
