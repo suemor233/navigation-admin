@@ -177,7 +177,7 @@ export default defineComponent({
     const columns = createColumns()
     return () => (
       <>
-        <ContentLayout v-slots={slots}>
+        <ContentLayout v-slots={slots} responsive={false}>
             <NDataTable
               ref={'table'}
               columns={columns}

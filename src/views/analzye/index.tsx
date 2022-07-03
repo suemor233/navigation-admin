@@ -142,6 +142,7 @@ export default defineComponent({
               </>
             ),
           }}
+          responsive={false}
         >
           <NDataTable
             ref={'table'}

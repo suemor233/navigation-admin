@@ -38,7 +38,7 @@ export default defineComponent({
 
     return () => (
       <>
-        <ContentLayout v-slots={slots}>
+        <ContentLayout v-slots={slots} responsive={false}>
           <NCollapse defaultExpandedNames={['detail']} displayDirective="show">
             <NCollapseItem title="简要介绍" name="detail">
               <DetailAboutView

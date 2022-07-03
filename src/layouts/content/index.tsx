@@ -19,6 +19,11 @@ export const ContentLayout = defineComponent({
       type: Object as PropType<JSX.Element | null>,
       required: false,
     },
+    responsive:{
+      type: Boolean,
+      require:false,
+      default:true
+    }
   },
   setup(props, ctx) {
     const { slots } = ctx
@@ -42,7 +47,7 @@ export const ContentLayout = defineComponent({
 
     return () => (
       <>
-        <div class={classes['bg'] + ' h-full px-10 flex flex-col'}>
+        <div class={ classes['bg'] + ' h-full px-10 flex flex-col'} style={!props.responsive ? {'min-width':'1080px'} : ''}>
           <header class={classes['header']}>
             <h1 class={classes['title']}>
               {slots.title?.() || pageTitle.value}

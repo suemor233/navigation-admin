@@ -10,9 +10,9 @@ export const SidebarLayout = defineComponent({
         <NSpace vertical size="large">
           <NLayout class={'h-screen'} has-sider>
               <SideBar />
-            <NLayout>
+            <div class={'overflow-x-auto w-full'}>
               <$RouterView />
-            </NLayout>
+            </div>
           </NLayout>
         </NSpace>
       </>
