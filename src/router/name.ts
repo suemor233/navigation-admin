@@ -6,6 +6,7 @@ export enum RouteName {
     About = 'about',
     Projects = 'projects',
     Stack = 'stack',
+    Analyze = 'analyze',
     Setting = 'setting',
     UserSetting = 'user-setting',
     Home = 'home',

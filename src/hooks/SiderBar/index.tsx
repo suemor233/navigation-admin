@@ -5,21 +5,40 @@ import {
   BookOutline as BookIcon,
   BuildOutline,
   FlaskOutline,
+  PulseOutline,
   SettingsOutline,
 } from '@vicons/ionicons5'
 import { OrderDetails } from '@vicons/carbon'
 
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { renderIcon } from '@/components/Icon'
 import Eye from '@vicons/tabler/es/Eye'
 import Pencil from '@vicons/tabler/es/Pencil'
+import { ChartLineIcon } from '@/components/icons'
 function useSideBar() {
   const router = useRouter()
+  const route = useRoute()
+  const currentPage = ref(route.query.page || 1)
   const handleUpdateValue = (key: string, item: MenuOption) => {
-    router.push(key)
+    if (key.includes('page')) {
+      router.push(handeleStr(key))
+    } else {
+      router.push(key)
+    }
   }
 
-  const menuOptions: MenuOption[] = [
+  const resetPage = () => {
+    currentPage.value = 1
+  }
+
+  const handeleStr = (str: string) => {
+    let length = str.length
+    let newArr = str.split('')
+    newArr[length - 1] = '1'
+    return newArr.join('')
+  }
+
+  const menuOptions: MenuOption[] = reactive([
     {
       label: '仪表盘',
       key: '/' + RouteName.Dashboard,
@@ -33,7 +52,12 @@ function useSideBar() {
       children: [
         {
           label: '关于列表',
-          key: '/' + RouteName.About + '/' + RouteName.List + '?page=1',
+          key:
+            '/' +
+            RouteName.About +
+            '/' +
+            RouteName.List +
+            `?page=${currentPage.value}`,
           icon: renderIcon(Eye),
         },
         {
@@ -50,7 +74,12 @@ function useSideBar() {
       children: [
         {
           label: '项目列表',
-          key: '/' + RouteName.Projects + '/' + RouteName.List + '?page=1',
+          key:
+            '/' +
+            RouteName.Projects +
+            '/' +
+            RouteName.List +
+            `?page=${currentPage.value}`,
           icon: renderIcon(Eye),
         },
         {
@@ -66,15 +95,21 @@ function useSideBar() {
       icon: renderIcon(BuildOutline),
     },
     {
+      label: '分析',
+      key: '/' + RouteName.Analyze + `?page=${currentPage.value}`,
+      icon: renderIcon(PulseOutline),
+    },
+
+    {
       label: '设定',
       key: '/setting',
       icon: renderIcon(SettingsOutline),
     },
-    
-  ]
+  ])
   return {
     handleUpdateValue,
     menuOptions,
+    resetPage,
   }
 }
 

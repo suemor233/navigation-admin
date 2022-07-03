@@ -15,10 +15,14 @@ export const ContentLayout = defineComponent({
       type: String,
       required: false,
     },
+    header: {
+      type: Object as PropType<JSX.Element | null>,
+      required: false,
+    },
   },
   setup(props, ctx) {
     const { slots } = ctx
-    const {updateUserInfo} = useUser()
+    const { updateUserInfo } = useUser()
     updateUserInfo()
     const router = useRouter()
     const route = computed(() => router.currentRoute)
@@ -40,12 +44,14 @@ export const ContentLayout = defineComponent({
       <>
         <div class={classes['bg'] + ' h-full px-10 flex flex-col'}>
           <header class={classes['header']}>
-            <h1 class={classes['title']}>{slots.title?.() || pageTitle.value}</h1>
+            <h1 class={classes['title']}>
+              {slots.title?.() || pageTitle.value}
+            </h1>
             <div class={'pr-10'}>
-            <Header >{slots.header?.()}</Header>
+              <Header>{slots.header?.()}</Header>
             </div>
           </header>
-          <div class={'flex-1'}>{slots.default?.()}</div>
+          <div class={'flex-1 pb-10'}>{slots.default?.()}</div>
         </div>
       </>
     )

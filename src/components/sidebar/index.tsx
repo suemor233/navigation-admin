@@ -18,7 +18,7 @@ export const SideBar = defineComponent({
     const router = useRouter()
     const route = useRoute()
     const { user } = storeToRefs(useUser())
-    const { menuOptions, handleUpdateValue } = useSideBar()
+    const {  resetPage,handleUpdateValue } = useSideBar()
     const isLargeScreen = useMediaQuery('(min-width: 960px)')
     const collapsed = ref(!isLargeScreen.value)
 
@@ -68,7 +68,7 @@ export const SideBar = defineComponent({
           </div>
           <NConfigProvider themeOverrides={themeOverrides}>
             <NMenu
-              options={menuOptions}
+              options={useSideBar().menuOptions}
               collapsed={collapsed.value}
               collapsedWidth={64}
               collapsedIconSize={22}

@@ -1,5 +1,16 @@
 import { fetchHitokoto, SentenceType } from '@/api/modules/hitokoto'
-import { BasicIcon, ChatbubblesSharpIcon, CodeIcon, CopyIcon, FlaskIcon, NoteIcon, PencilIcon, RedisIcon, RefreshIcon, StackIcon } from '@/components/icons'
+import {
+  BasicIcon,
+  ChatbubblesSharpIcon,
+  CodeIcon,
+  CopyIcon,
+  FlaskIcon,
+  NoteIcon,
+  PencilIcon,
+  RedisIcon,
+  RefreshIcon,
+  StackIcon,
+} from '@/components/icons'
 import { ContentLayout } from '@/layouts/content'
 import { Icon } from '@vicons/utils'
 import {
@@ -27,7 +38,6 @@ import { RouteName } from '@/router/name'
 import { aggregateInfo } from '../../api/modules/aggregate'
 import { clean_redis } from '@/api/modules/root'
 import Pencil from '@vicons/tabler/es/Pencil'
-
 
 export const DashBoardView = defineComponent({
   setup(props, ctx) {
@@ -128,7 +138,7 @@ export const DashBoardView = defineComponent({
       {
         label: '简要介绍',
         value: stat.value.aboutDetail,
-        icon: <PencilIcon/>,
+        icon: <PencilIcon />,
         actions: [
           {
             name: '撰写',
@@ -214,15 +224,19 @@ export const DashBoardView = defineComponent({
     const DataStat = defineComponent(() => () => (
       <>
         <NH3 class={'font-light'}>数据统计</NH3>
-        <NP class={'font-normal'}>
-          <span>
-            数据更新于 :{' '}
-            <time>
-              {statTime.value
-                ? parseDate(statTime.value, 'yyyy年M月d日 HH:mm:ss')
-                : 'N/A'}
-            </time>
-          </span>
+        <NP class={'font-normal flex items-center'}>
+          <span>数据更新于 : </span>
+
+          <time>
+            {statTime.value
+              ? parseDate(statTime.value, 'yyyy年M月d日 HH:mm:ss')
+              : 'N/A'}
+          </time>
+          <NButton text onClick={fetchStat} class="ml-4 text-black">
+            <Icon>
+              <RefreshIcon />
+            </Icon>
+          </NButton>
         </NP>
 
         <NGrid

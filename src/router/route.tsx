@@ -1,15 +1,16 @@
-import { StackView } from '../views/stack/index';
-import { RouteName } from './name';
-import Setuplayout from "@/layouts/setup-view";
-import { RouteRecordRaw } from "vue-router";
-import { SidebarLayout } from '@/layouts/sidebar';
-import { DashBoardView } from '@/views/dashboard';
+import { StackView } from '../views/stack/index'
+import { RouteName } from './name'
+import Setuplayout from '@/layouts/setup-view'
+import { RouteRecordRaw } from 'vue-router'
+import { SidebarLayout } from '@/layouts/sidebar'
+import { DashBoardView } from '@/views/dashboard'
 import { DashboardOutlined } from '@vicons/antd'
-import { renderIcon } from '@/components/Icon';
-import { BuildOutline, FlaskOutline, SettingsOutline } from '@vicons/ionicons5';
-import { $RouterView } from '@/layouts/router-view';
+import { renderIcon } from '@/components/Icon'
+import { BuildOutline, FlaskOutline, PulseOutline, SettingsOutline } from '@vicons/ionicons5'
+import { $RouterView } from '@/layouts/router-view'
 import Eye from '@vicons/tabler/es/Eye'
 import Pencil from '@vicons/tabler/es/Pencil'
+import { ChartLineIcon } from '@/components/icons'
 export const routeForMenu: Array<RouteRecordRaw> = [
   {
     path: '/dashboard',
@@ -76,8 +77,8 @@ export const routeForMenu: Array<RouteRecordRaw> = [
           title: '创建项目',
           icon: renderIcon(Pencil),
         },
-        
-        component: () => import('../views/project/edit'),
+
+        component: () => import('../views/Project/edit'),
       },
     ],
   },
@@ -88,6 +89,16 @@ export const routeForMenu: Array<RouteRecordRaw> = [
     meta: {
       title: '栈',
       icon: renderIcon(BuildOutline),
+    },
+  },
+  {
+    path: 'analyze',
+    component: () => import('../views/analzye'),
+    name: RouteName.Analyze,
+    meta: {
+      title: '数据',
+      icon: <PulseOutline />,
+      query: { page: 1 },
     },
   },
   {
@@ -123,23 +134,22 @@ export const routes: RouteRecordRaw[] = [
     children: [...routeForMenu],
   },
   {
-    path: "/",
-    component:Setuplayout,
+    path: '/',
+    component: Setuplayout,
     redirect: '/login',
-    children:[
+    children: [
       {
-        path: "/setup",
+        path: '/setup',
         name: RouteName.Setup,
         meta: { isPublic: true, title: '初始化' },
         component: () => import('../views/setup'),
       },
       {
-        path: "/login",
+        path: '/login',
         name: RouteName.Login,
         meta: { isPublic: true, title: '登陆' },
         component: () => import('../views/login/index'),
       },
-    ]
+    ],
   },
-
-];
+]

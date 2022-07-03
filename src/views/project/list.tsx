@@ -4,11 +4,18 @@ import { AddIcon } from '@/components/icons'
 import { DeleteConfirmButton } from '@/components/special-button/delete-confirm'
 import { RelativeTime } from '@/components/time/relative-time'
 import { ContentLayout } from '@/layouts/content'
-import { DataTableColumns, NButton, NDataTable, NPopconfirm, NSpace, useMessage } from 'naive-ui'
+import {
+  DataTableColumns,
+  NButton,
+  NDataTable,
+  NPopconfirm,
+  NSpace,
+  useMessage,
+} from 'naive-ui'
 import { defineComponent, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ProjectDataType } from './edit'
-import { RouteName } from '@/router/name';
+import { RouteName } from '@/router/name'
 
 interface ProjectReturnDataType {
   project: ProjectDataType[]
@@ -39,11 +46,11 @@ export default defineComponent({
             <HeaderActionButton to={'/projects/edit'} icon={<AddIcon />} />
           </NSpace>
         </>
-      )
+      ),
     }
 
     const handlePageChange = async (
-      pageNum = (route.query.page || 1) as number,
+      pageNum = Number(route.query.page) || 1,
       pageSize: number = 10,
     ) => {
       const res = (await projectInfo({
@@ -62,7 +69,6 @@ export default defineComponent({
       route,
       async () => {
         await handlePageChange()
-
       },
       { immediate: true },
     )
@@ -81,10 +87,10 @@ export default defineComponent({
                 class={'text-green-600'}
                 onClick={() => {
                   router.push({
-                    name:RouteName.EditProject,
-                    query:{
-                      id:row.id
-                    }
+                    name: RouteName.EditProject,
+                    query: {
+                      id: row.id,
+                    },
                   })
                 }}
               >
@@ -161,7 +167,7 @@ export default defineComponent({
               </NSpace>
             )
           },
-        }
+        },
       ]
     }
     const handleCheck = (rowKeys: any) => {
@@ -172,25 +178,25 @@ export default defineComponent({
     return () => (
       <>
         <ContentLayout v-slots={slots}>
-          <NDataTable
-            ref={'table'}
-            columns={columns}
-            remote
-            data={projectData.value?.project}
-            pagination={{
-              page: projectData.value?.pagination.page,
-              pageSize: projectData.value?.pagination.pageSize,
-              pageCount: projectData.value?.pagination.pageCount,
-              onChange: async (page) => {
-                router.push({
-                  query: { ...route.query, page },
-                  path: route.path,
-                })
-              },
-            }}
-            rowKey={(row) => row.id}
-            onUpdateCheckedRowKeys={handleCheck}
-          />
+            <NDataTable
+              ref={'table'}
+              columns={columns}
+              remote
+              data={projectData.value?.project}
+              pagination={{
+                page: projectData.value?.pagination.page,
+                pageSize: projectData.value?.pagination.pageSize,
+                pageCount: projectData.value?.pagination.pageCount,
+                onChange: async (page) => {
+                  router.push({
+                    query: { ...route.query, page },
+                    path: route.path,
+                  })
+                },
+              }}
+              rowKey={(row) => row.id}
+              onUpdateCheckedRowKeys={handleCheck}
+            />
         </ContentLayout>
       </>
     )

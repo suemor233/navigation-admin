@@ -2,12 +2,12 @@
   background: #FAFAFC;
   overflow: auto;
   .header {
-    height: 8em;
+    line-height: 8em;
     display: flex;
     justify-content: space-between;
     align-items: center;
     & .title {
-      @apply flex items-center select-none  z-10;
+      @apply flex items-center select-none z-10;
       font-size: 1.73rem;
     }
   }
