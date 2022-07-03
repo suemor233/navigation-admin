@@ -10,7 +10,6 @@ import { BuildOutline, FlaskOutline, PulseOutline, SettingsOutline } from '@vico
 import { $RouterView } from '@/layouts/router-view'
 import Eye from '@vicons/tabler/es/Eye'
 import Pencil from '@vicons/tabler/es/Pencil'
-import { ChartLineIcon } from '@/components/icons'
 export const routeForMenu: Array<RouteRecordRaw> = [
   {
     path: '/dashboard',
@@ -78,7 +77,7 @@ export const routeForMenu: Array<RouteRecordRaw> = [
           icon: renderIcon(Pencil),
         },
 
-        component: () => import('../views/Project/edit'),
+        component: () => import('../views/project/edit'),
       },
     ],
   },
