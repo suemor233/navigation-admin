@@ -1,4 +1,4 @@
-interface Stat {
+export interface Stat {
   aboutBasic: number;
   aboutDetail: number;
   project: number;

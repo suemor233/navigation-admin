@@ -14,7 +14,7 @@ import {
 import { storeToRefs } from 'pinia'
 import { isEmpty } from 'lodash-es'
 import { computed, defineComponent, onBeforeMount, reactive, ref } from 'vue'
-import { SEditor } from '@/components/SEditor'
+import { SEditor } from '@/components/v-editor'
 import { socialKeyMap } from '@/common/social'
 import Avatar from '@/components/avatar'
 

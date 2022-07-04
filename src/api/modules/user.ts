@@ -15,7 +15,7 @@ export function register(data:SettingFormType) {
 }
 
 export function userInfo() {
-    return client.get('/user')
+    return client.get('/user/all')
 }
 
 export function patchUser(data:SettingFormType) {

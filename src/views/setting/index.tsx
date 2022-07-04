@@ -24,7 +24,7 @@ export default defineComponent({
     
     return () => (
       <>
-        <ContentLayout>
+        <ContentLayout responsive={false}>
         <NTabs
           animated
           value={tabValue.value}

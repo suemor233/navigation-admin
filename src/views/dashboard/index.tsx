@@ -2,10 +2,8 @@ import { fetchHitokoto, SentenceType } from '@/api/modules/hitokoto'
 import {
   BasicIcon,
   ChatbubblesSharpIcon,
-  CodeIcon,
   CopyIcon,
   FlaskIcon,
-  NoteIcon,
   PencilIcon,
   RedisIcon,
   RefreshIcon,
@@ -37,7 +35,7 @@ import { useRouter } from 'vue-router'
 import { RouteName } from '@/router/name'
 import { aggregateInfo } from '../../api/modules/aggregate'
 import { clean_redis } from '@/api/modules/root'
-import Pencil from '@vicons/tabler/es/Pencil'
+import { Stat } from '@/models/stat'
 
 export const DashBoardView = defineComponent({
   setup(props, ctx) {
@@ -70,12 +68,12 @@ export const DashBoardView = defineComponent({
           hitokoto.value = data.hitokoto + (postfix ? ` —— ${postfix}` : '')
         }
       })
-      statTime.value = new Date()
     }
 
     const fetchStat = async () => {
       const counts = await aggregateInfo()
       stat.value = counts
+      statTime.value = new Date()
     }
 
     const statTime = ref(null as unknown as Date)
