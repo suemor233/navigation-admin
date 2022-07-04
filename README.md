@@ -17,10 +17,10 @@
 src
 ├─ api  				# umi-request 请求封装
 ├─ common				# 常量
-├─ components		    # 组件
-├─ hooks				# hook 函数，一般以 use-xxx.ts 命名
-├─ layouts 			# 页面布局文件，用作分割布局，如下图左右两边在此分开，右边为一个 RouterView，2，3 则为插槽，只需在 views 中为插槽填入内容即可
-├─ views				# 视图层，也是主要编写代码的地方，因为 layouts 进行了分割，所以我们只要往 2，3 插槽离填入内容就可以了
+├─ components		                # 组件
+├─ hooks				# hook 函数
+├─ layouts 			        # 页面布局文件
+├─ views				# 视图层
 ├─ models				# typescript 类型文件
 ├─ router				# 路由配置
 ├─ store				# pinia 状态管理
