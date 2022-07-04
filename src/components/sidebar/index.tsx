@@ -5,7 +5,7 @@ import type { ComputedRef } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import useSideBar from '@/hooks/SiderBar'
+import useSideBar from '@/hooks/use-sidebar'
 import { useUser } from '@/store/user'
 import { useMediaQuery } from '@vueuse/core'
 
