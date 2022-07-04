@@ -4,7 +4,7 @@ import { h } from 'vue'
 
 import { Icon } from '@vicons/utils'
 
-export function renderIcon(icon: Component) {
+export default function (icon: Component) {
   return () =>
     h(NIcon, null, {
       default: () =>
