@@ -11,7 +11,7 @@ import {
 import { OrderDetails } from '@vicons/carbon'
 
 import { useRoute, useRouter } from 'vue-router'
-import { renderIcon } from '@/components/icon'
+import { renderIcon } from '@/components/Icon'
 import Eye from '@vicons/tabler/es/Eye'
 import Pencil from '@vicons/tabler/es/Pencil'
 import { ChartLineIcon } from '@/components/icons'
