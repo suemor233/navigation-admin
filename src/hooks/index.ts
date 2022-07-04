@@ -1,6 +1,3 @@
-
 import useSideBar from './SiderBar'
 
-export {
-    useSideBar
-}
+export { useSideBar }

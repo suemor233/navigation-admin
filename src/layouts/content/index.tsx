@@ -1,7 +1,9 @@
-import { useUser } from '@/store/user'
-import { NButton, NLayoutContent, NLayoutFooter, NLayoutHeader } from 'naive-ui'
-import { computed, defineComponent, PropType } from 'vue'
+import type { PropType } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
+
+import { useUser } from '@/store/user'
+
 import { Header } from '../Header'
 import classes from './index.module.scss'
 
@@ -19,11 +21,11 @@ export const ContentLayout = defineComponent({
       type: Object as PropType<JSX.Element | null>,
       required: false,
     },
-    responsive:{
+    responsive: {
       type: Boolean,
-      require:false,
-      default:true
-    }
+      require: false,
+      default: true,
+    },
   },
   setup(props, ctx) {
     const { slots } = ctx
@@ -38,7 +40,7 @@ export const ContentLayout = defineComponent({
           (cur.meta.title
             ? // t 不为空, 补一个 分隔符
               t.length > 0
-              ? ' · ' + cur.meta.title
+              ? ` · ${cur.meta.title}`
               : cur.meta.title
             : ''),
         '',
@@ -47,7 +49,10 @@ export const ContentLayout = defineComponent({
 
     return () => (
       <>
-        <div class={ classes['bg'] + ' h-full px-10 flex flex-col'} style={!props.responsive ? {'min-width':'1080px'} : ''}>
+        <div
+          class={`${classes['bg']} h-full px-10 flex flex-col`}
+          style={!props.responsive ? { 'min-width': '1080px' } : ''}
+        >
           <header class={classes['header']}>
             <h1 class={classes['title']}>
               {slots.title?.() || pageTitle.value}

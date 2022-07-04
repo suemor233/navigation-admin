@@ -1,31 +1,31 @@
-import client from "@/api/umi-request";
-import { SettingFormType } from "@/views/setting/tabs/user";
+import client from '@/api/umi-request'
+import type { SettingFormType } from '@/views/setting/tabs/user'
 
 type userBaseType = {
-    username:string,
-    password:string
+  username: string
+  password: string
 }
 
-export function login(data:userBaseType) {
-    return client.post('/user/login', {data})
+export function login(data: userBaseType) {
+  return client.post('/user/login', { data })
 }
 
-export function register(data:SettingFormType) {
-    return client.post('/user/register',{data})
+export function register(data: SettingFormType) {
+  return client.post('/user/register', { data })
 }
 
 export function userInfo() {
-    return client.get('/user/all')
+  return client.get('/user/all')
 }
 
-export function patchUser(data:SettingFormType) {
-    return client.patch('/user',{data})
+export function patchUser(data: SettingFormType) {
+  return client.patch('/user', { data })
 }
 
 export function check() {
-    return client.get('/user/check_logged')
+  return client.get('/user/check_logged')
 }
 
 export function checkInit() {
-    return client.get('/user/init')
+  return client.get('/user/init')
 }

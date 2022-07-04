@@ -14,8 +14,10 @@
 
 <script lang="ts">
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { PropType, computed, defineComponent, onMounted, ref } from 'vue'
+import type { PropType } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 
+// eslint-disable-next-line import/no-default-export
 export default defineComponent({
   props: {
     title: {

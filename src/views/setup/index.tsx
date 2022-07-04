@@ -1,8 +1,3 @@
-import { checkInit, patchUser, register } from '@/api/modules/user'
-import { router } from '@/router'
-import { RouteName } from '@/router/name'
-import { removeToken } from '@/utils'
-import { ChevronBack } from '@vicons/ionicons5'
 import {
   NButton,
   NCard,
@@ -15,20 +10,25 @@ import {
   NSteps,
   useMessage,
 } from 'naive-ui'
+import type { PropType } from 'vue'
 import {
+  KeepAlive,
   computed,
   defineComponent,
   h,
-  KeepAlive,
   onBeforeMount,
-  onMounted,
-  PropType,
   reactive,
   ref,
 } from 'vue'
 import { useRouter } from 'vue-router'
+
+import { checkInit, register } from '@/api/modules/user'
+import { RouteName } from '@/router/name'
+import { removeToken } from '@/utils'
+import { ChevronBack } from '@vicons/ionicons5'
+
 export default defineComponent({
-  setup(props, ctx) {
+  setup() {
     const router = useRouter()
     const toast = useMessage()
     const step = ref(0)
@@ -140,7 +140,7 @@ const stepFormProps = {
 
 const Step1 = defineComponent({
   props: stepFormProps,
-  setup(props, ctx) {
+  setup(props) {
     const toast = useMessage()
     const user = reactive({
       username: '',
@@ -197,7 +197,7 @@ const Step1 = defineComponent({
 
 const Step2 = defineComponent({
   props: stepFormProps,
-  setup(props, ctx) {
+  setup(props) {
     const user = reactive({
       mail: '',
       avatar: '',
@@ -205,7 +205,7 @@ const Step2 = defineComponent({
       introduce: '',
     })
     const handleNext = async () => {
-      props.onNext(user)
+      props.onNext?.(user)
     }
     return () => (
       <>
@@ -244,7 +244,7 @@ const Step2 = defineComponent({
 
 const Step3 = defineComponent({
   props: stepFormProps,
-  setup(props, ctx) {
+  setup(props) {
     return () => (
       <>
         <NSpace class={'text-center'} vertical>

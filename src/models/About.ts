@@ -5,7 +5,6 @@ export interface BasicDataType {
   created?: string
 }
 
-
 export interface DetailDataType {
   id?: string
   title: string
@@ -13,7 +12,6 @@ export interface DetailDataType {
   created?: string
   modified?: string
 }
-
 
 export interface DetailReturnDataType {
   aboutDetail: DetailDataType[]

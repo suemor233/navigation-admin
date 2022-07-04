@@ -1,17 +1,14 @@
-import { RelativeTime } from '@/components/time/relative-time'
-import {
-  DataTableColumns,
-  NButton,
-  NDataTable,
-  NPopconfirm,
-  NSpace,
-  useMessage,
-} from 'naive-ui'
-import { defineComponent, PropType, ref, watch } from 'vue'
+import type { DataTableColumns } from 'naive-ui'
+import { NButton, NDataTable, NPopconfirm, NSpace, useMessage } from 'naive-ui'
+import type { PropType } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { DetailDataType, DetailReturnDataType } from '@/models/About'
-import { deleteDetail, detailInfo } from '../../../api/modules/about'
+
+import { RelativeTime } from '@/components/time/relative-time'
+import type { DetailDataType, DetailReturnDataType } from '@/models/About'
 import { RouteName } from '@/router/name'
+
+import { deleteDetail, detailInfo } from '../../../api/modules/about'
 
 export const DetailAboutView = defineComponent({
   props: {
@@ -29,7 +26,7 @@ export const DetailAboutView = defineComponent({
 
     const handlePageChange = async (
       pageNum = (route.query.page || 1) as number,
-      pageSize: number = 10,
+      pageSize = 10,
     ) => {
       const res = (await detailInfo({
         pageNum,

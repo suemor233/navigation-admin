@@ -1,13 +1,16 @@
+import { useMessage } from 'naive-ui'
+import { defineComponent, onMounted, ref } from 'vue'
+
 import { stackInfo, updateStack } from '@/api/modules/stack'
 import { HeaderActionButton } from '@/components/button/rounded-button'
 import { SendIcon } from '@/components/icons'
 import { ContentLayout } from '@/layouts/content'
-import { Stack } from '@/models/Stack'
-import { useMessage } from 'naive-ui'
-import { defineComponent, onMounted, ref, watch } from 'vue'
+import type { Stack } from '@/models/Stack'
+
 import { ProgressView } from './progress'
+
 export const StackView = defineComponent({
-  setup(props, ctx) {
+  setup() {
     const StackValue = ref<Stack[] | null>(null)
     const toast = useMessage()
     const slots = {
@@ -21,7 +24,6 @@ export const StackView = defineComponent({
         ></HeaderActionButton>
       ),
     }
-
 
     const handleStackUpdate = async (value: Stack[]) => {
       const success = await updateStack(value)

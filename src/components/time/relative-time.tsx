@@ -1,6 +1,7 @@
 import { NPopover } from 'naive-ui'
+import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
+
 import { parseDate, relativeTimeFromNow } from '@/utils/time'
-import { defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
 
 const _RelativeTime = defineComponent({
   props: {

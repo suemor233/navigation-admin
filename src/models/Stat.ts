@@ -1,7 +1,7 @@
 export interface Stat {
-  aboutBasic: number;
-  aboutDetail: number;
-  project: number;
-  stack: number;
-  socialIds: number;
+  aboutBasic: number
+  aboutDetail: number
+  project: number
+  stack: number
+  socialIds: number
 }

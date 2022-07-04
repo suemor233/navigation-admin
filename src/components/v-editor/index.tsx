@@ -1,7 +1,8 @@
-import { nextTick, onMounted } from 'vue'
-import { NButton, NDynamicInput, NInput, NSelect } from 'naive-ui'
-import { SelectMixedOption } from 'naive-ui/es/select/src/interface'
-import { defineComponent, onBeforeMount, PropType, ref, watch } from 'vue'
+import { NDynamicInput, NInput, NSelect } from 'naive-ui'
+import type { SelectMixedOption } from 'naive-ui/es/select/src/interface'
+import type { PropType } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
+
 export const SEditor = defineComponent({
   props: {
     options: {
@@ -14,22 +15,26 @@ export const SEditor = defineComponent({
     },
     onChange: {
       type: Function as PropType<(value?: Record<string, string>[]) => void>,
-      required: true
+      required: true,
     },
   },
   setup(props, ctx) {
-    const { onChange, value } = props
-    const KVArray = ref<{ key: string; value: string }[]>(value as { key: string; value: string }[])
+    const { onChange } = props
+    const KVArray = ref<{ key: string; value: string }[]>(
+      props.value as { key: string; value: string }[],
+    )
     const options = ref(props.options)
 
     watch(
       () => KVArray.value,
       (newValue) => {
-        //@ts-ignore
+        // @ts-ignore
         onChange(newValue)
 
         options.value?.forEach((option) => {
-          option.disabled = !!KVArray.value.find((item) => item.key === option.value)
+          option.disabled = !!KVArray.value.find(
+            (item) => item.key === option.value,
+          )
         })
       },
       { deep: true },
@@ -69,4 +74,3 @@ export const SEditor = defineComponent({
     )
   },
 })
-

@@ -3,9 +3,9 @@ export const XsSpan = defineComponent({
     value: {
       type: String,
       require: true,
-    }
+    },
   },
-  setup: (props, ctx) => {
+  setup: (props) => {
     return () => (
       <>
         <span class={'text-xs'}>{props.value}</span>

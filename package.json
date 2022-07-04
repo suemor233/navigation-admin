@@ -5,9 +5,8 @@
   "scripts": {
     "dev": "NODE_ENV=development vite --mode development --open",
     "build": "NODE_ENV=production vite build --mode production",
-    "serve": "vite preview",
-    "lint": "eslint src",
-    "lint:fix": "eslint src --fix --ext .ts,.tsx"
+    "lint": "eslint \"src/**/*.{ts,tsx,js,json,vue}\" --fix",
+    "format": "prettier --write --loglevel warn \"src/**/*.{js,json,tsx,ts,css,scss,vue,html,md}\""
   },
   "dependencies": {
     "@vueuse/core": "^8.6.0",
@@ -23,6 +22,8 @@
     "vue-router": "4.0.14"
   },
   "devDependencies": {
+    "@suemor/eslint-config-ts": "^1.0.1",
+    "@suemor/prettier": "^1.0.1",
     "@types/js-cookie": "^3.0.2",
     "@types/node": "^17.0.23",
     "@typescript-eslint/eslint-plugin": "^5.17.0",

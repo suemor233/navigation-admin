@@ -1,15 +1,15 @@
-import { RouteName } from '@/router/name';
-import { useRouter } from 'vue-router';
-import { removeToken, setToken } from '@/utils/auth';
+import { acceptHMRUpdate, defineStore } from 'pinia'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-import { onBeforeMount, ref } from 'vue';
-import { acceptHMRUpdate, defineStore } from "pinia";
-import { check, login, patchUser, userInfo, } from '@/api/modules/user';
-import { IUser } from './userType';
-import { SettingFormType } from '@/views/setting/tabs/user';
+import { login, patchUser, userInfo } from '@/api/modules/user'
+import { removeToken, setToken } from '@/utils/auth'
+import type { SettingFormType } from '@/views/setting/tabs/user'
+
+import type { IUser } from './userType'
 
 export const useUser = defineStore('useUser', () => {
-  const user = ref<IUser | null>(null);
+  const user = ref<IUser | null>(null)
   const router = useRouter()
   const userLogin = async (username: string, password: string) => {
     const res = await login({ username, password })
@@ -25,7 +25,7 @@ export const useUser = defineStore('useUser', () => {
     }
   }
 
-  const patchUserInfo = async (data:SettingFormType) => {
+  const patchUserInfo = async (data: SettingFormType) => {
     const res = await patchUser(data)
     if (res) {
       user.value = res
@@ -33,17 +33,16 @@ export const useUser = defineStore('useUser', () => {
     }
   }
 
-  const updateToken = ($token: string)=> {
+  const updateToken = ($token: string) => {
     if ($token) {
       setToken($token, 7)
     }
   }
 
-  const logout = () =>{
+  const logout = () => {
     user.value = null
     removeToken()
   }
-
 
   return {
     user,
@@ -51,7 +50,7 @@ export const useUser = defineStore('useUser', () => {
     updateToken,
     logout,
     updateUserInfo,
-    patchUserInfo
+    patchUserInfo,
   }
 })
 if (import.meta.hot)

@@ -8,7 +8,7 @@ import {
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  setup(props, ctx) {
+  setup() {
     return () => (
       <>
         <NConfigProvider locale={zhCN}>
@@ -24,7 +24,7 @@ export default defineComponent({
 })
 
 export const messageWrapper = defineComponent({
-  setup(props, ctx) {
+  setup() {
     window.$message = useMessage()
     return () => (
       <>

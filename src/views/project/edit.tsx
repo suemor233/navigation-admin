@@ -1,13 +1,17 @@
-import { createProject, projectInfoById, updateProject } from '@/api/modules/project'
+import { NForm, NFormItem, NInput, useMessage } from 'naive-ui'
+import { defineComponent, onMounted, reactive } from 'vue'
+import { useRoute } from 'vue-router'
+
+import {
+  createProject,
+  projectInfoById,
+  updateProject,
+} from '@/api/modules/project'
 import { HeaderActionButton } from '@/components/button/rounded-button'
 import { SendIcon } from '@/components/icons'
 import { ContentLayout } from '@/layouts/content'
 import { router } from '@/router'
 import { RouteName } from '@/router/name'
-import { CheckmarkSharp } from '@vicons/ionicons5'
-import { NDynamicTags, NForm, NFormItem, NInput, useMessage } from 'naive-ui'
-import { defineComponent, onMounted, reactive } from 'vue'
-import { useRoute } from 'vue-router'
 
 export interface ProjectDataType {
   id?: string
@@ -19,7 +23,7 @@ export interface ProjectDataType {
 }
 
 export default defineComponent({
-  setup(props, ctx) {
+  setup() {
     const toast = useMessage()
     const route = useRoute()
     const slots = {
@@ -40,12 +44,12 @@ export default defineComponent({
 
       let res
       if (route.query.id) {
-        res = await updateProject(route.query.id as string,projectData)
+        res = await updateProject(route.query.id as string, projectData)
       } else {
         res = await createProject(projectData)
       }
       if (res) {
-        toast.success(route.query.id ? '修改成功' :'创建成功')
+        toast.success(route.query.id ? '修改成功' : '创建成功')
         router.push({
           name: RouteName.ListProject,
           query: {
@@ -67,7 +71,6 @@ export default defineComponent({
         res && Object.assign(projectData, res)
       }
     })
-
 
     watch(
       () => route.query.id,

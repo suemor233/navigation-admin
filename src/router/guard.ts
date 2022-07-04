@@ -1,14 +1,15 @@
-import { useUser } from '@/store/user';
-import { check, checkInit } from '@/api/modules/user'
 import QProgress from 'qier-progress'
+
+import { check, checkInit } from '@/api/modules/user'
+import { RouteName } from '@/router/name'
+import { useUser } from '@/store/user'
+
 import { router } from './router'
-import { RouteName } from '@/router/name';
 
 const qprogress = new QProgress()
 router.beforeEach(async (to) => {
   qprogress.start()
   if (!to.meta.isPublic) {
-
     const ok = await check()
     if (!ok) {
       const isInit = await checkInit()
@@ -18,12 +19,12 @@ router.beforeEach(async (to) => {
 
         logout()
 
-        router.push({name:RouteName.Login})
+        router.push({ name: RouteName.Login })
       } else {
-        router.push({name:RouteName.Setup})
+        router.push({ name: RouteName.Setup })
       }
     }
-  } 
+  }
 })
 
 router.afterEach((to, _) => {

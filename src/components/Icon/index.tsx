@@ -1,6 +1,8 @@
-import { Icon } from "@vicons/utils";
-import { NIcon } from "naive-ui";
-import { Component, h } from "vue";
+import { NIcon } from 'naive-ui'
+import type { Component } from 'vue'
+import { h } from 'vue'
+
+import { Icon } from '@vicons/utils'
 
 export function renderIcon(icon: Component) {
   return () =>

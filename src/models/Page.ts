@@ -1,4 +1,4 @@
-export interface PageType  {
-  pageNum:number
-  pageSize:number
+export interface PageType {
+  pageNum: number
+  pageSize: number
 }

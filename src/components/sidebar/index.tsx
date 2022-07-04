@@ -1,24 +1,23 @@
-import { computed, ComputedRef, defineComponent, ref, watch } from 'vue'
-import {
-  GlobalThemeOverrides,
-  NLayoutSider,
-  NMenu,
-  NConfigProvider,
-} from 'naive-ui'
-import { useRoute, useRouter } from 'vue-router'
-import classes from './index.module.scss'
-import useSideBar from '@/hooks/SiderBar'
-import { useMediaQuery } from '@vueuse/core'
-import { useUser } from '@/store/user'
+import type { GlobalThemeOverrides } from 'naive-ui'
+import { NConfigProvider, NLayoutSider, NMenu } from 'naive-ui'
 import { storeToRefs } from 'pinia'
+import type { ComputedRef } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+
+import useSideBar from '@/hooks/SiderBar'
+import { useUser } from '@/store/user'
+import { useMediaQuery } from '@vueuse/core'
+
 import Avatar from '../avatar'
+import classes from './index.module.scss'
 
 export const SideBar = defineComponent({
-  setup(props, ctx) {
+  setup() {
     const router = useRouter()
     const route = useRoute()
     const { user } = storeToRefs(useUser())
-    const {  resetPage,handleUpdateValue } = useSideBar()
+    const { resetPage, handleUpdateValue } = useSideBar()
     const isLargeScreen = useMediaQuery('(min-width: 960px)')
     const collapsed = ref(!isLargeScreen.value)
 
@@ -28,7 +27,7 @@ export const SideBar = defineComponent({
 
     const fullPathValue: ComputedRef<string> = computed(() => {
       if (route.name === 'setting') {
-        return '/' + route.name
+        return `/${route.name}`
       }
 
       return route.fullPath

@@ -1,7 +1,10 @@
+import { defineComponent } from 'vue'
+
 import CheckCircleOutlined from '@vicons/antd/CheckCircleOutlined'
 import Lock from '@vicons/antd/LockFilled'
 import Snippet from '@vicons/antd/SnippetsFilled'
 import QuestionCircleOutlined from '@vicons/antd/es/QuestionCircleOutlined'
+import { OrderDetails } from '@vicons/carbon'
 import Pen from '@vicons/fa/Pen'
 import SlackHash from '@vicons/fa/SlackHash'
 import Book from '@vicons/fa/es/Book'
@@ -25,6 +28,7 @@ import ThumbsUp from '@vicons/fa/es/ThumbsUp'
 import UndoAlt from '@vicons/fa/es/UndoAlt'
 import UserFriends from '@vicons/fa/es/UserFriends'
 import Add12Filled from '@vicons/fluent/es/Add12Filled'
+import ArrowCircleRight28Regular from '@vicons/fluent/es/ArrowCircleRight28Regular'
 import Delete16Regular from '@vicons/fluent/es/Delete16Regular'
 import EmojiAdd24Regular from '@vicons/fluent/es/EmojiAdd24Regular'
 import EyeHide20Filled from '@vicons/fluent/es/EyeOff20Filled'
@@ -34,6 +38,7 @@ import Link24Filled from '@vicons/fluent/es/Link24Filled'
 import Location24Regular from '@vicons/fluent/es/Location24Regular'
 import Note24Filled from '@vicons/fluent/es/Note24Filled'
 import Search24Regular from '@vicons/fluent/es/Search24Regular'
+import { BuildOutline } from '@vicons/ionicons5'
 import ChatbubblesSharp from '@vicons/ionicons5/es/ChatbubblesSharp'
 import CheckmarkSharp from '@vicons/ionicons5/es/CheckmarkSharp'
 import CloseSharp from '@vicons/ionicons5/es/CloseSharp'
@@ -46,7 +51,6 @@ import AddLinkFilled from '@vicons/material/es/AddLinkFilled'
 import BubbleChartFilled from '@vicons/material/es/BubbleChartFilled'
 import FullscreenExitOutlined from '@vicons/material/es/FullscreenExitOutlined'
 import OnlinePredictionFilled from '@vicons/material/es/OnlinePredictionFilled'
-import ArrowCircleRight28Regular from '@vicons/fluent/es/ArrowCircleRight28Regular'
 import RedoRound from '@vicons/material/es/RedoRound'
 import UndoRound from '@vicons/material/es/UndoRound'
 import Activity from '@vicons/tabler/es/Activity'
@@ -57,10 +61,7 @@ import Template from '@vicons/tabler/es/Layout2'
 import Log from '@vicons/tabler/es/News'
 import Pencil from '@vicons/tabler/es/Pencil'
 import Settings from '@vicons/tabler/es/Settings'
-import { defineComponent } from 'vue'
 import { Icon } from '@vicons/utils'
-import { BuildOutline, FlaskOutline } from '@vicons/ionicons5'
-import { OrderDetails } from '@vicons/carbon'
 
 export { Lock as LockIcon }
 export { Pen as PenIcon }
@@ -110,7 +111,7 @@ export {
   Log as LogIcon,
   Pencil as PencilIcon,
   BuildOutline as StackIcon,
-  OrderDetails as BasicIcon
+  OrderDetails as BasicIcon,
 }
 export { QuestionCircleOutlined as QuestionCircleIcon }
 export { SlackHash as SlackHashIcon }

@@ -1,11 +1,13 @@
-import { checkInit, userInfo } from '@/api/modules/user'
-import styles from './index.module.scss'
-import { RouteName } from '@/router/name'
-import { NAvatar, NButton, useMessage } from 'naive-ui'
+import { NAvatar, useMessage } from 'naive-ui'
 import { defineComponent, onBeforeMount, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+
+import { checkInit, userInfo } from '@/api/modules/user'
 import { LoginInput } from '@/components/input/login-input'
+import { RouteName } from '@/router/name'
 import { useUser } from '@/store/user'
+
+import styles from './index.module.scss'
 
 interface LoginUserType {
   username: string
@@ -13,7 +15,7 @@ interface LoginUserType {
   avatar: string
 }
 export default defineComponent({
-  setup(props, ctx) {
+  setup() {
     const router = useRouter()
     const toast = useMessage()
     const shake = ref(false)
@@ -68,7 +70,7 @@ export default defineComponent({
             onChange={(value) => {
               user.password = value
             }}
-            disabled={!!!user.password.length}
+            disabled={!user.password.length}
             onClick={handleLogin}
           />
         </div>

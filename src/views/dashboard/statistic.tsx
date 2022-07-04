@@ -1,5 +1,5 @@
 import { NSkeleton, NSpace, NStatistic } from 'naive-ui'
-import { defineComponent, Fragment } from 'vue'
+import { Fragment, defineComponent } from 'vue'
 
 export const Statistic = defineComponent({
   props: { label: String, value: [String, Number] },

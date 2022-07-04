@@ -1,18 +1,20 @@
+import { useMessage } from 'naive-ui'
 import { defineComponent } from 'vue'
-import { ContentLayout } from '@/layouts/content'
-import { HeaderActionButton } from '@/components/button/rounded-button'
-import { SendIcon } from '@/components/icons'
 import { useRoute, useRouter } from 'vue-router'
-import {useMessage } from 'naive-ui'
-import { MyVditor } from '@/components/editor/vditor'
+
 import { createDetail, detailInfoById, updateDetail } from '@/api/modules/about'
-import { RouteName } from '@/router/name'
+import { HeaderActionButton } from '@/components/button/rounded-button'
+import { MyVditor } from '@/components/editor/vditor'
+import { SendIcon } from '@/components/icons'
 import { MaterialInput } from '@/components/input/material-input'
+import { ContentLayout } from '@/layouts/content'
+import { RouteName } from '@/router/name'
+
 export default defineComponent({
-  setup(props, ctx) {
+  setup() {
     const route = useRoute()
     const router = useRouter()
-    let isUpdate = route.query.id
+    const isUpdate = route.query.id
     const detailEdit = reactive({
       title: '',
       content: '',

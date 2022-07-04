@@ -1,16 +1,4 @@
-import { fetchHitokoto, SentenceType } from '@/api/modules/hitokoto'
-import {
-  BasicIcon,
-  ChatbubblesSharpIcon,
-  CopyIcon,
-  FlaskIcon,
-  PencilIcon,
-  RedisIcon,
-  RefreshIcon,
-  StackIcon,
-} from '@/components/icons'
-import { ContentLayout } from '@/layouts/content'
-import { Icon } from '@vicons/utils'
+import { pick } from 'lodash-es'
 import {
   NButton,
   NCard,
@@ -26,19 +14,35 @@ import {
   useMessage,
 } from 'naive-ui'
 import { defineComponent } from 'vue'
-import { pick } from 'lodash-es'
-import { getJinRiShiCiOne, verseDataType } from '@/api/modules/jinrishici'
-import { useUser } from '../../store/user/index'
-import { parseDate } from '@/utils'
-import { Card, CardProps } from './card'
 import { useRouter } from 'vue-router'
-import { RouteName } from '@/router/name'
-import { aggregateInfo } from '../../api/modules/aggregate'
+
+import { SentenceType, fetchHitokoto } from '@/api/modules/hitokoto'
+import type { verseDataType } from '@/api/modules/jinrishici'
+import { getJinRiShiCiOne } from '@/api/modules/jinrishici'
 import { clean_redis } from '@/api/modules/root'
-import { Stat } from '@/models/stat'
+import {
+  BasicIcon,
+  ChatbubblesSharpIcon,
+  CopyIcon,
+  FlaskIcon,
+  PencilIcon,
+  RedisIcon,
+  RefreshIcon,
+  StackIcon,
+} from '@/components/icons'
+import { ContentLayout } from '@/layouts/content'
+import type { Stat } from '@/models/stat'
+import { RouteName } from '@/router/name'
+import { parseDate } from '@/utils'
+import { Icon } from '@vicons/utils'
+
+import { aggregateInfo } from '../../api/modules/aggregate'
+import { useUser } from '../../store/user/index'
+import type { CardProps } from './card'
+import { Card } from './card'
 
 export const DashBoardView = defineComponent({
-  setup(props, ctx) {
+  setup() {
     const toast = useMessage()
     const userStore = useUser()
     const router = useRouter()

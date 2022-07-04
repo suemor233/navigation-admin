@@ -1,8 +1,11 @@
-import { Icon } from '@vicons/utils'
-import { NButton } from 'naive-ui'
-import { computed, defineComponent, onMounted, PropType, ref, watch } from 'vue'
+import type { PropType } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
+
 import ArrowCircleRight28Regular from '@vicons/fluent/es/ArrowCircleRight28Regular'
+import { Icon } from '@vicons/utils'
+
 import styles from './index.module.scss'
+
 export const LoginInput = defineComponent({
   props: {
     disabled: {
@@ -26,7 +29,7 @@ export const LoginInput = defineComponent({
       required: false,
     },
   },
-  setup(props, ctx) {
+  setup(props) {
     const waitResponse = ref(false)
     watch(props, () => {
       waitResponse.value = props.shake
@@ -36,7 +39,6 @@ export const LoginInput = defineComponent({
         waitResponse.value = true
         props.onClick?.()
       }
-
     }
     return () => (
       <>
@@ -57,7 +59,10 @@ export const LoginInput = defineComponent({
 
           {!props.disabled && (
             <div class="absolute right-0 mt-0.5 mr-0.5">
-              <button onClick={handleSend} style={waitResponse.value ? {pointerEvents:'none'} : ''}>
+              <button
+                onClick={handleSend}
+                style={waitResponse.value ? { pointerEvents: 'none' } : ''}
+              >
                 <Icon
                   color={waitResponse.value ? '#c3c0c2' : 'white'}
                   size={25}

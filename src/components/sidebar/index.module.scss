@@ -1,19 +1,23 @@
-.side{
+.side {
   //background: #E7F5EE;
   background-color: #e0eae0;
   background-image: linear-gradient(330deg, #e0eae0 0%, #deeee7 100%);
- 
-  .avatar{
+
+  .avatar {
     text-align: center;
     padding-top: 1rem;
     cursor: pointer;
 
-    @-webkit-keyframes rotation{
-      from {-webkit-transform: rotate(0deg);}
-      to {-webkit-transform: rotate(360deg);}
+    @-webkit-keyframes rotation {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+      to {
+        -webkit-transform: rotate(360deg);
+      }
     }
 
-    p{
+    p {
       font-size: 1.8rem;
       margin: 0px;
       color: #6bb09c;
@@ -21,4 +25,3 @@
     }
   }
 }
-

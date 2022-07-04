@@ -1,7 +1,8 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import { RouterView } from 'vue-router'
+
 export default defineComponent({
-  setup(props, ctx) {
+  setup() {
     const bgUrl = import.meta.env.VITE_APP_LOGIN_BG as string
     const loaded = ref(false)
     onMounted(() => {

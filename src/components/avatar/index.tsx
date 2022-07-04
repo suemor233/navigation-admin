@@ -1,5 +1,7 @@
 import { defineComponent, onMounted, ref, watch } from 'vue'
+
 import styles from './index.module.scss'
+
 export default defineComponent({
   props: {
     size: {
@@ -45,7 +47,7 @@ export default defineComponent({
           <img
             src={props.src}
             alt=""
-            style={{ display: loaded ? '' : 'none' }}
+            style={{ display: loaded.value ? '' : 'none' }}
           />
           <div class="sr-only">一个头像</div>
         </div>

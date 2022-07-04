@@ -1,10 +1,12 @@
-import { basicInfo, updateBasic } from '@/api/modules/about'
-import { BasicDataType } from '@/models/About'
-import { deepDiff } from '@/utils'
-import { NButton, NDynamicInput, NSpace, useMessage } from 'naive-ui'
 import { isEmpty } from 'lodash-es'
+import { NButton, NDynamicInput, NSpace, useMessage } from 'naive-ui'
+
+import { basicInfo, updateBasic } from '@/api/modules/about'
+import type { BasicDataType } from '@/models/About'
+import { deepDiff } from '@/utils'
+
 export const BasicAboutView = defineComponent({
-  setup(props, ctx) {
+  setup() {
     const basicValue = ref<BasicDataType[]>([])
     let origin: BasicDataType[]
     const toast = useMessage()
@@ -13,10 +15,9 @@ export const BasicAboutView = defineComponent({
       handleChange()
     })
     const diff = computed(() =>
-      deepDiff( {...[origin]}, {...[basicValue.value]}),
+      deepDiff({ ...[origin] }, { ...[basicValue.value] }),
     )
     const handleSave = async () => {
-
       if (basicValue.value) {
         const res = await updateBasic(basicValue.value)
         res && toast.success('保存成功')

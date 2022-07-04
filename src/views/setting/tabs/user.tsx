@@ -1,39 +1,32 @@
-import { RelativeTime } from '@/components/time/relative-time'
-import { useUser } from '@/store/user'
-import { IUser } from '@/store/user/userType'
-import { deepDiff } from '@/utils'
-import {
-  FormInst,
-  FormRules,
-  NButton,
-  NForm,
-  NFormItem,
-  NInput,
-  useMessage,
-} from 'naive-ui'
-import { storeToRefs } from 'pinia'
 import { isEmpty } from 'lodash-es'
+import type { FormInst, FormRules } from 'naive-ui'
+import { NButton, NForm, NFormItem, NInput, useMessage } from 'naive-ui'
+import { storeToRefs } from 'pinia'
 import { computed, defineComponent, onBeforeMount, reactive, ref } from 'vue'
-import { SEditor } from '@/components/v-editor'
+
 import { socialKeyMap } from '@/common/social'
 import Avatar from '@/components/avatar'
+import { RelativeTime } from '@/components/time/relative-time'
+import { SEditor } from '@/components/v-editor'
+import { useUser } from '@/store/user'
+import type { IUser } from '@/store/user/userType'
+import { deepDiff } from '@/utils'
 
-export interface SettingFormType
-  extends Partial<
-    Pick<
-      IUser,
-      | 'username'
-      | 'mail'
-      | 'avatar'
-      | 'introduce'
-      | 'socialIds'
-      | 'backgroundImage'
-      | 'password'
-    >
-  > {}
+export type SettingFormType = Partial<
+  Pick<
+    IUser,
+    | 'username'
+    | 'mail'
+    | 'avatar'
+    | 'introduce'
+    | 'socialIds'
+    | 'backgroundImage'
+    | 'password'
+  >
+>
 
 export const TabUser = defineComponent({
-  setup(props, ctx) {
+  setup() {
     const { user } = storeToRefs(useUser())
     const { updateUserInfo, patchUserInfo } = useUser()
     const formRef = ref<FormInst | null>(null)

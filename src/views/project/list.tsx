@@ -1,21 +1,17 @@
+import type { DataTableColumns } from 'naive-ui'
+import { NButton, NDataTable, NPopconfirm, NSpace, useMessage } from 'naive-ui'
+import { defineComponent, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+
 import { deleteProject, projectInfo } from '@/api/modules/project'
 import { HeaderActionButton } from '@/components/button/rounded-button'
 import { AddIcon } from '@/components/icons'
 import { DeleteConfirmButton } from '@/components/special-button/delete-confirm'
 import { RelativeTime } from '@/components/time/relative-time'
 import { ContentLayout } from '@/layouts/content'
-import {
-  DataTableColumns,
-  NButton,
-  NDataTable,
-  NPopconfirm,
-  NSpace,
-  useMessage,
-} from 'naive-ui'
-import { defineComponent, ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { ProjectDataType } from './edit'
 import { RouteName } from '@/router/name'
+
+import type { ProjectDataType } from './edit'
 
 interface ProjectReturnDataType {
   project: ProjectDataType[]
@@ -28,7 +24,7 @@ interface ProjectReturnDataType {
 }
 
 export default defineComponent({
-  setup(props, ctx) {
+  setup() {
     const route = useRoute()
     const router = useRouter()
     const toast = useMessage()
@@ -51,7 +47,7 @@ export default defineComponent({
 
     const handlePageChange = async (
       pageNum = Number(route.query.page) || 1,
-      pageSize: number = 10,
+      pageSize = 10,
     ) => {
       const res = (await projectInfo({
         pageNum,
@@ -178,25 +174,25 @@ export default defineComponent({
     return () => (
       <>
         <ContentLayout v-slots={slots} responsive={false}>
-            <NDataTable
-              ref={'table'}
-              columns={columns}
-              remote
-              data={projectData.value?.project}
-              pagination={{
-                page: projectData.value?.pagination.page,
-                pageSize: projectData.value?.pagination.pageSize,
-                pageCount: projectData.value?.pagination.pageCount,
-                onChange: async (page) => {
-                  router.push({
-                    query: { ...route.query, page },
-                    path: route.path,
-                  })
-                },
-              }}
-              rowKey={(row) => row.id}
-              onUpdateCheckedRowKeys={handleCheck}
-            />
+          <NDataTable
+            ref={'table'}
+            columns={columns}
+            remote
+            data={projectData.value?.project}
+            pagination={{
+              page: projectData.value?.pagination.page,
+              pageSize: projectData.value?.pagination.pageSize,
+              pageCount: projectData.value?.pagination.pageCount,
+              onChange: async (page) => {
+                router.push({
+                  query: { ...route.query, page },
+                  path: route.path,
+                })
+              },
+            }}
+            rowKey={(row) => row.id}
+            onUpdateCheckedRowKeys={handleCheck}
+          />
         </ContentLayout>
       </>
     )

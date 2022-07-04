@@ -1,15 +1,23 @@
-import { StackView } from '../views/stack/index'
-import { RouteName } from './name'
+import type { RouteRecordRaw } from 'vue-router'
+
+import { renderIcon } from '@/components/Icon'
+import { $RouterView } from '@/layouts/router-view'
 import Setuplayout from '@/layouts/setup-view'
-import { RouteRecordRaw } from 'vue-router'
 import { SidebarLayout } from '@/layouts/sidebar'
 import { DashBoardView } from '@/views/dashboard'
 import { DashboardOutlined } from '@vicons/antd'
-import { renderIcon } from '@/components/Icon'
-import { BuildOutline, FlaskOutline, PulseOutline, SettingsOutline } from '@vicons/ionicons5'
-import { $RouterView } from '@/layouts/router-view'
+import {
+  BuildOutline,
+  FlaskOutline,
+  PulseOutline,
+  SettingsOutline,
+} from '@vicons/ionicons5'
 import Eye from '@vicons/tabler/es/Eye'
 import Pencil from '@vicons/tabler/es/Pencil'
+
+import { StackView } from '../views/stack/index'
+import { RouteName } from './name'
+
 export const routeForMenu: Array<RouteRecordRaw> = [
   {
     path: '/dashboard',

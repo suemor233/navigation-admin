@@ -1,5 +1,5 @@
 .vditor-ir pre.vditor-reset {
-  background-color: #FAFAFC;
+  background-color: #fafafc;
 }
 .vditor-toolbar--hide {
   @apply hidden;

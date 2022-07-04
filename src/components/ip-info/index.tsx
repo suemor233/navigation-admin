@@ -1,8 +1,9 @@
-import { ipInfo } from '@/api/modules/tools';
-import type { PopoverTrigger } from 'naive-ui';
+import type { PopoverTrigger } from 'naive-ui'
 import { NPopover } from 'naive-ui'
-import type { PropType} from 'vue';
+import type { PropType } from 'vue'
 import { defineComponent, ref } from 'vue'
+
+import { ipInfo } from '@/api/modules/tools'
 
 const ipLocationCacheMap = new Map<string, IP>()
 

@@ -1,6 +1,9 @@
-import { Stack } from '@/models/StackType'
-import { NDynamicInput, NInput, NSlider, NSpace } from 'naive-ui'
-import { defineComponent, PropType, ref, watch } from 'vue'
+import type { Stack } from '@/models/Stack'
+import { NDynamicInput, NInput, NSlider } from 'naive-ui'
+import type { PropType } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
+
+
 export const ProgressView = defineComponent({
   props: {
     stackValue: {
@@ -12,12 +15,16 @@ export const ProgressView = defineComponent({
       required: true,
     },
   },
-  setup(props, ctx) {
+  setup(props) {
     const basicValue = ref<Stack[]>(props.stackValue)
 
-    watch(basicValue, (newValue) => {
-      props.onUpdateValue && props.onUpdateValue(basicValue.value)
-    },{deep:true})
+    watch(
+      basicValue,
+      (newValue) => {
+        props.onUpdateValue && props.onUpdateValue(basicValue.value)
+      },
+      { deep: true },
+    )
 
     const onCreate = () => {
       return {
@@ -33,12 +40,17 @@ export const ProgressView = defineComponent({
             {{
               default(rowProps) {
                 return (
-                  <div class={'w-full flex justify-around items-center gap-x-4'}>
+                  <div
+                    class={'w-full flex justify-around items-center gap-x-4'}
+                  >
                     <div
                       class={'flex justify-around items-center w-full gap-x-8'}
                     >
                       <NInput v-model:value={rowProps.value.name} />
-                      <NSlider v-model:value={rowProps.value.progressValue} step={5}/>
+                      <NSlider
+                        v-model:value={rowProps.value.progressValue}
+                        step={5}
+                      />
                     </div>
                     <p class={'w-5'}>{rowProps.value.progressValue}</p>
                   </div>

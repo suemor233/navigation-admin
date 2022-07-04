@@ -1,18 +1,20 @@
+import type { DataTableColumns } from 'naive-ui'
+import { NButton, NDataTable, NSpace, useMessage } from 'naive-ui'
 import { defineComponent } from 'vue'
-import { ContentLayout } from '@/layouts/content'
+import { useRoute, useRouter } from 'vue-router'
+
+import { analyzeInfo, deleteAnalyzeAll } from '@/api/modules/analyze'
 import { HeaderActionButton } from '@/components/button/rounded-button'
 import { RefreshOutlineIcon, TrashIcon } from '@/components/icons'
-import { DeleteConfirmButton } from '@/components/special-button/delete-confirm'
-import { DataTableColumns, NButton, NDataTable, NSpace, useMessage } from 'naive-ui'
-import { useRoute, useRouter } from 'vue-router'
-import { AnalyzeType } from '@/models/Analyze'
-import { analyzeInfo, deleteAnalyzeAll } from '@/api/modules/analyze'
-import { XsSpan } from '@/components/span/xs-span'
-import { parseDate } from '@/utils'
 import { IpInfoPopover } from '@/components/ip-info'
+import { XsSpan } from '@/components/span/xs-span'
+import { DeleteConfirmButton } from '@/components/special-button/delete-confirm'
+import { ContentLayout } from '@/layouts/content'
+import type { AnalyzeType } from '@/models/Analyze'
+import { parseDate } from '@/utils'
 
 export default defineComponent({
-  setup(props, ctx) {
+  setup() {
     const router = useRouter()
     const route = useRoute()
     const toast = useMessage()
@@ -21,7 +23,7 @@ export default defineComponent({
 
     const handlePageChange = async (
       pageNum = Number(route.query.page) || 1,
-      pageSize: number = 30,
+      pageSize = 30,
     ) => {
       const res = (await analyzeInfo({
         pageNum,
@@ -35,8 +37,8 @@ export default defineComponent({
     }
 
     const clearAllData = async () => {
-      await deleteAnalyzeAll().then(res =>{
-        console.log(res);
+      await deleteAnalyzeAll().then((res) => {
+        console.log(res)
         res && toast.success('清空成功')
         handlePageChange()
       })
@@ -123,8 +125,8 @@ export default defineComponent({
                     icon={<RefreshOutlineIcon />}
                     variant="success"
                     name="刷新数据"
-                    onClick={async() => {
-                      await handlePageChange().then((res)=>{
+                    onClick={async () => {
+                      await handlePageChange().then((res) => {
                         res && toast.success('刷新成功')
                       })
                     }}

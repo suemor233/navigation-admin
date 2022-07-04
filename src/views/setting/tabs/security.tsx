@@ -1,16 +1,10 @@
-import { patchUser } from '@/api/modules/user'
-import { RouteName } from '@/router/name';
-import { useUser } from '@/store/user'
-import {
-  FormInst,
-  NButton,
-  NForm,
-  NFormItem,
-  NInput,
-  useMessage,
-} from 'naive-ui'
+import type { FormInst } from 'naive-ui'
+import { NButton, NForm, NFormItem, NInput, useMessage } from 'naive-ui'
 import { defineComponent, reactive, ref } from 'vue'
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
+
+import { RouteName } from '@/router/name'
+import { useUser } from '@/store/user'
 
 export const autosizeableProps = {
   autosize: true,
@@ -19,7 +13,7 @@ export const autosizeableProps = {
 } as const
 
 export const TabSecurity = defineComponent({
-  setup(props, ctx) {
+  setup() {
     const formRef = ref<FormInst | null>(null)
     const user = useUser()
     const toast = useMessage()
@@ -45,7 +39,7 @@ export const TabSecurity = defineComponent({
           if (res) {
             toast.success('修改成功')
             user.logout()
-            router.push({name:RouteName.Login})
+            router.push({ name: RouteName.Login })
           }
         } else {
           console.log(err)

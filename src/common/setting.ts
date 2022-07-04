@@ -1,5 +1,5 @@
-export const  SettingTab =  {
-  User : 'user',
-  System : 'system',
-  Security : 'security',
+export const SettingTab = {
+  User: 'user',
+  System: 'system',
+  Security: 'security',
 }

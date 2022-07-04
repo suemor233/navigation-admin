@@ -1,18 +1,21 @@
+import { NCollapse, NCollapseItem, NSpace } from 'naive-ui'
+import { defineComponent, ref } from 'vue'
+
 import { deleteDetail } from '@/api/modules/about'
 import { HeaderActionButton } from '@/components/button/rounded-button'
 import { AddIcon } from '@/components/icons'
 import { DeleteConfirmButton } from '@/components/special-button/delete-confirm'
 import { ContentLayout } from '@/layouts/content'
-import { DetailReturnDataType } from '@/models/About'
-import { NCollapse, NCollapseItem, NSpace, useMessage } from 'naive-ui'
-import { defineComponent, ref } from 'vue'
+
 import { BasicAboutView } from './tabs/basic'
 import { DetailAboutView } from './tabs/detail'
 
 export default defineComponent({
-  setup(props, ctx) {
+  setup() {
     const checkedRowKeysRef = ref<string[]>([])
-    const detaioRef = ref<{handlePageChange:(pageNum?:number,pageSize?:number)=>void}>()
+    const detaioRef = ref<{
+      handlePageChange: (pageNum?: number, pageSize?: number) => void
+    }>()
     const slots = {
       _header: () => (
         <>
