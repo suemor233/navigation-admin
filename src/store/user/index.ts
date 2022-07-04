@@ -1,8 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 
-import { login, patchUser, userInfo } from '@/api/modules/user'
+import { login, masterInfo, patchUser } from '@/api/modules/user'
 import { removeToken, setToken } from '@/utils/auth'
 import type { SettingFormType } from '@/views/setting/tabs/user'
 
@@ -10,20 +9,21 @@ import type { IUser } from './userType'
 
 export const useUser = defineStore('useUser', () => {
   const user = ref<IUser | null>(null)
-  const router = useRouter()
   const userLogin = async (username: string, password: string) => {
     const res = await login({ username, password })
     user.value = res
     updateToken(user.value?.token as string)
+    await updateUserInfo()
     return !!res
   }
 
   const updateUserInfo = async () => {
-    const res = await userInfo()
+    const res = await masterInfo()
     if (res) {
       user.value = res
     }
   }
+
 
   const patchUserInfo = async (data: SettingFormType) => {
     const res = await patchUser(data)

@@ -14,8 +14,12 @@ export function register(data: SettingFormType) {
   return client.post('/user/register', { data })
 }
 
-export function userInfo() {
+export function masterInfo() {
   return client.get('/user/all')
+}
+
+export function userInfo() {
+  return client.get('/user')
 }
 
 export function patchUser(data: SettingFormType) {
