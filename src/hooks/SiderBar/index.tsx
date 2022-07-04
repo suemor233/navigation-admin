@@ -1,7 +1,7 @@
 import type { MenuOption } from 'naive-ui'
 import { useRoute, useRouter } from 'vue-router'
 
-import { renderIcon } from '@/components/Icon'
+import  renderIcon  from '@/components/icons/green-icon'
 import { RouteName } from '@/router/name'
 import { DashboardOutlined } from '@vicons/antd'
 import { OrderDetails } from '@vicons/carbon'

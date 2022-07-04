@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-import { renderIcon } from '@/components/Icon'
+import  renderIcon  from '@/components/icons/green-icon'
 import { $RouterView } from '@/layouts/router-view'
 import Setuplayout from '@/layouts/setup-view'
 import { SidebarLayout } from '@/layouts/sidebar'
