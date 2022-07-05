@@ -14,7 +14,6 @@ import {
 } from '@vicons/ionicons5'
 import Eye from '@vicons/tabler/es/Eye'
 import Pencil from '@vicons/tabler/es/Pencil'
-
 import { StackView } from '../views/stack/index'
 import { RouteName } from './name'
 
