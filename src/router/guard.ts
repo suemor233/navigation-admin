@@ -1,9 +1,7 @@
 import QProgress from 'qier-progress'
-
 import { check, checkInit } from '@/api/modules/user'
 import { RouteName } from '@/router/name'
 import { useUser } from '@/store/user'
-
 import { router } from './router'
 
 const qprogress = new QProgress()
