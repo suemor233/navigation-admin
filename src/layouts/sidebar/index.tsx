@@ -1,8 +1,6 @@
 import { NLayout, NSpace } from 'naive-ui'
 import { defineComponent } from 'vue'
-
 import { SideBar } from '@/components/sidebar'
-
 import { $RouterView } from '../router-view'
 
 export const SidebarLayout = defineComponent({
