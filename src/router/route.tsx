@@ -9,7 +9,7 @@ import { DashboardOutlined } from '@vicons/antd'
 import {
   BuildOutline,
   FlaskOutline,
-  PulseOutline,
+  PulseOutline, 
   SettingsOutline,
 } from '@vicons/ionicons5'
 import Eye from '@vicons/tabler/es/Eye'
