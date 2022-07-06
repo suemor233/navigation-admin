@@ -1,7 +1,7 @@
 {
   "name": "navigation-admin",
   "private": true,
-  "version": "1.0.5",
+  "version": "1.0.6",
   "scripts": {
     "dev": "NODE_ENV=development vite --mode development --open",
     "build": "NODE_ENV=production vite build --mode production",
