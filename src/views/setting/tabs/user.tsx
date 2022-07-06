@@ -43,7 +43,7 @@ export const TabUser = defineComponent({
 
     onBeforeMount(async () => {
       await updateUserInfo()
-      Object.assign(settingForm, user.value)
+      Object.assign(settingForm, JSON.parse(JSON.stringify( user.value)))
     })
     const rules: FormRules = {
       username: [

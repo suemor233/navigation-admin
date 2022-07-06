@@ -18,8 +18,7 @@ export const SEditor = defineComponent({
       required: true,
     },
   },
-  setup(props, ctx) {
-    const { onChange } = props
+  setup(props) {
     const KVArray = ref<{ key: string; value: string }[]>(
       props.value as { key: string; value: string }[],
     )
@@ -28,8 +27,7 @@ export const SEditor = defineComponent({
     watch(
       () => KVArray.value,
       (newValue) => {
-        // @ts-ignore
-        onChange(newValue)
+        props.onChange?.(newValue)
 
         options.value?.forEach((option) => {
           option.disabled = !!KVArray.value.find(
@@ -37,7 +35,7 @@ export const SEditor = defineComponent({
           )
         })
       },
-      { deep: true },
+      { deep: true , immediate: true }
     )
 
     const onCreate = () => {
