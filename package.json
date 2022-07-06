@@ -1,5 +1,5 @@
 {
-  "name": "vue3-template",
+  "name": "navigation-admin",
   "private": true,
   "version": "1.0.5",
   "scripts": {
@@ -9,6 +9,7 @@
     "format": "prettier --write --loglevel warn \"src/**/*.{js,json,tsx,ts,css,scss,vue,html,md}\""
   },
   "dependencies": {
+    "@antv/g2plot": "^2.4.20",
     "@vueuse/core": "^8.6.0",
     "date-fns": "^2.28.0",
     "js-cookie": "^3.0.1",

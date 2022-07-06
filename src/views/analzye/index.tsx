@@ -3,7 +3,7 @@ import { NButton, NDataTable, NSpace, useMessage } from 'naive-ui'
 import { defineComponent } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import { analyzeInfo, deleteAnalyzeAll } from '@/api/modules/analyze'
+import { analyzeInfo, charInfo, deleteAnalyzeAll } from '@/api/modules/analyze'
 import { HeaderActionButton } from '@/components/button/rounded-button'
 import { RefreshOutlineIcon, TrashIcon } from '@/components/icons'
 import { IpInfoPopover } from '@/components/ip-info'
@@ -12,7 +12,11 @@ import { DeleteConfirmButton } from '@/components/special-button/delete-confirm'
 import { ContentLayout } from '@/layouts/content'
 import type { AnalyzeType } from '@/models/Analyze'
 import { parseDate } from '@/utils'
+import { Line } from '@antv/g2plot'
 
+const SectionTitle = defineComponent((_, { slots }) => () => (
+  <div class="font-semibold text-gray-400 my-[12px] ">{slots.default?.()}</div>
+))
 export default defineComponent({
   setup() {
     const router = useRouter()
@@ -20,7 +24,6 @@ export default defineComponent({
     const toast = useMessage()
     const analyzeeData = ref<AnalyzeReturnDataType | undefined>(undefined)
     const checkedRowKeysRef = ref<string[]>([])
-
     const handlePageChange = async (
       pageNum = Number(route.query.page) || 1,
       pageSize = 30,
@@ -38,7 +41,6 @@ export default defineComponent({
 
     const clearAllData = async () => {
       await deleteAnalyzeAll().then((res) => {
-        console.log(res)
         res && toast.success('清空成功')
         handlePageChange()
       })
@@ -102,6 +104,56 @@ export default defineComponent({
       ]
     }
 
+    const Graph = defineComponent(() => {
+      const dayChart = ref<HTMLElement>()
+      const data = reactive<DayChartType[]>([])
+
+      const fetchData = async () => {
+        const res = (await charInfo()) as Record<'data', DayChartType[]>
+        if (res) {
+          Object.assign(data, res.data)
+        }
+        renderChart()
+      }
+      const renderChart = () => {
+        const line = new Line(dayChart.value as HTMLElement, {
+          data,
+          xField: 'hour',
+          yField: 'value',
+          seriesField: 'key',
+          height: 250,
+          color: '#5AD8A6',
+          point: {
+            size: 3,
+            shape: 'circle',
+            style: {
+              stroke: '#5AD8A6',
+              lineWidth: 2,
+              fillOpacity: 0.6,
+            },
+          },
+          // 添加label
+          label: {
+            offsetY: -3,
+            style: {
+              fill: '#000',
+            },
+          },
+        })
+        line.render()
+      }
+      onMounted(async () => {
+        await fetchData()
+      })
+
+      return () => (
+        <div>
+          <SectionTitle>今日请求走势</SectionTitle>
+          <div ref={dayChart}></div>
+        </div>
+      )
+    })
+
     const handleCheck = (rowKeys: any) => {
       checkedRowKeysRef.value = rowKeys
     }
@@ -146,25 +198,28 @@ export default defineComponent({
           }}
           responsive={false}
         >
-          <NDataTable
-            ref={'table'}
-            columns={columns}
-            remote
-            data={analyzeeData.value?.analyzes}
-            pagination={{
-              page: analyzeeData.value?.pagination.page,
-              pageSize: analyzeeData.value?.pagination.pageSize,
-              pageCount: analyzeeData.value?.pagination.pageCount,
-              onChange: async (page) => {
-                router.push({
-                  query: { ...route.query, page },
-                  path: route.path,
-                })
-              },
-            }}
-            rowKey={(row) => row.id}
-            onUpdateCheckedRowKeys={handleCheck}
-          />
+          <NSpace vertical size={30}>
+            <Graph />
+            <NDataTable
+              ref={'table'}
+              columns={columns}
+              remote
+              data={analyzeeData.value?.analyzes}
+              pagination={{
+                page: analyzeeData.value?.pagination.page,
+                pageSize: analyzeeData.value?.pagination.pageSize,
+                pageCount: analyzeeData.value?.pagination.pageCount,
+                onChange: async (page) => {
+                  router.push({
+                    query: { ...route.query, page },
+                    path: route.path,
+                  })
+                },
+              }}
+              rowKey={(row) => row.id}
+              onUpdateCheckedRowKeys={handleCheck}
+            />
+          </NSpace>
         </ContentLayout>
       </>
     )
@@ -179,4 +234,10 @@ interface AnalyzeReturnDataType {
     pageSize: number
     itemCount: number
   }
+}
+
+interface DayChartType {
+  hour: string
+  key: string
+  value: number
 }
